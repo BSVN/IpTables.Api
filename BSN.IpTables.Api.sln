@@ -4,12 +4,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{AB5DD529-3C2F-42E5-A5FE-0863D4BBD4CF}"
+	ProjectSection(SolutionItems) = preProject
+		Build\build.cake = Build\build.cake
+		Build\build.ps1 = Build\build.ps1
+		Build\cake.config = Build\cake.config
+		Build\linux-build.cake = Build\linux-build.cake
+		Build\README.md = Build\README.md
+		Build\windows-build.cake = Build\windows-build.cake
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{70AE69C7-7213-4193-A514-5D06526EC544}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{AC6D41C1-B22B-476B-9D22-25F45F08E122}"
+	ProjectSection(SolutionItems) = preProject
+		Document\README.md = Document\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{12DEA530-7ABA-4B24-B629-E231AA36C365}"
+	ProjectSection(SolutionItems) = preProject
+		Test\README.md = Test\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Api", "Source\BSN.IpTables.Api\BSN.IpTables.Api.csproj", "{D40AAB28-6B86-4E6E-B51A-9F1404B5AB09}"
 EndProject
@@ -17,15 +31,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.gitignore = .gitignore
+		build.sh = build.sh
 		Directory.Build.props = Directory.Build.props
+		Dockerfile.test = Dockerfile.test
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		README.md = README.md
+		sbuild.bat = sbuild.bat
 		testEnvironments.json = testEnvironments.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{4264F4C7-0BF7-484F-9AB6-8E9312A50FEB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Api.Tests", "Test\UnitTests\BSN.IpTables.Api.Tests\BSN.IpTables.Api.Tests.csproj", "{BCD38560-9570-40CF-8B7B-D22C20DD6EDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{F49C2402-DF58-402E-847D-E67F6AC66F64}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{387CFE47-D0AC-4191-9FAA-EB9203519A05}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\release-drafter.yml = .github\release-drafter.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DA92F560-B467-4744-9002-7475466C9DCD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +83,7 @@ Global
 		{D40AAB28-6B86-4E6E-B51A-9F1404B5AB09} = {70AE69C7-7213-4193-A514-5D06526EC544}
 		{4264F4C7-0BF7-484F-9AB6-8E9312A50FEB} = {12DEA530-7ABA-4B24-B629-E231AA36C365}
 		{BCD38560-9570-40CF-8B7B-D22C20DD6EDE} = {4264F4C7-0BF7-484F-9AB6-8E9312A50FEB}
+		{DA92F560-B467-4744-9002-7475466C9DCD} = {387CFE47-D0AC-4191-9FAA-EB9203519A05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52753D02-BF5A-4DDE-BB5E-4FA5E12E0C8F}
