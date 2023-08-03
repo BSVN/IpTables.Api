@@ -27,7 +27,6 @@ jobs:
         include: 
           - solution: BSN.IpTables.Api.sln
             os: [windows-2022, ubuntu-latest]
-            artifact: VS2022
 
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
