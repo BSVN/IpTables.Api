@@ -65,8 +65,29 @@ jobs:
         echo "::set-output name=GitBuildVersion::$($env:GitBuildVersion)"
         echo "::set-output name=GitBuildVersionSimple::$($env:GitBuildVersionSimple)"
 
+    # set pr number, if it's a pr build
+    - name: set pr build number
+      id: PRNUMBER
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: kkak10/pr-number-action@v1.3
+
+      # set report file and title 
+    - name: Set Test Title
+      run: | 
+            if ${{ github.event_name == 'pull_request' }}
+            then
+              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" >> $GITHUB_ENV              
+            else
+              echo "title=Test Run ${{github.run_number}}" >> $GITHUB_ENV
+              echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
+            fi
+
+    # run tests with built project
     - name: Test
-      run: dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+      run: |
+        dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+        dotnet test --no-restore --no-build --configuration $config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
@@ -77,6 +98,14 @@ jobs:
         path: 'Build/artifacts/*.xml'
 
 
+      # add report as PR comment (if PR)
+    - name: comment PR
+      uses: machine-learning-apps/pr-comment@master
+      if: ${{ github.event_name == 'pull_request' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        path: ${{env.file_name}}
     - name: Dump steps context
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
