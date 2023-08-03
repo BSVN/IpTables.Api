@@ -3,3 +3,5 @@ RUN mkdir /usr/local/temp
 
 RUN wget https://aka.ms/getvsdbgsh && \
     sh getvsdbgsh -v latest  -l /vsdbg
+
+RUN apt-get update && apt-get install iptables -y

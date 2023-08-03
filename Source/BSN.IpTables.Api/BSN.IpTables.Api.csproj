@@ -14,4 +14,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BSN.IpTables.Domain\BSN.IpTables.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
