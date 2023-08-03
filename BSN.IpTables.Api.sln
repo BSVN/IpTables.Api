@@ -21,6 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{AC
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{12DEA530-7ABA-4B24-B629-E231AA36C365}"
+	ProjectSection(SolutionItems) = preProject
+		Test\README.md = Test\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Api", "Source\BSN.IpTables.Api\BSN.IpTables.Api.csproj", "{D40AAB28-6B86-4E6E-B51A-9F1404B5AB09}"
 EndProject

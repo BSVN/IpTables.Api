@@ -211,6 +211,7 @@ class TestProject : Project
 			return ("../" +
 				SolutionDirectory +
 				BoundedContextSolutionDirectory +
+				IntermediateDirectory +
 				DefaultScope +
 				BoundedContextScope +
 				Name
