@@ -48,6 +48,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{F49C
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{387CFE47-D0AC-4191-9FAA-EB9203519A05}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\release-drafter.yml = .github\release-drafter.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DA92F560-B467-4744-9002-7475466C9DCD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +80,7 @@ Global
 		{D40AAB28-6B86-4E6E-B51A-9F1404B5AB09} = {70AE69C7-7213-4193-A514-5D06526EC544}
 		{4264F4C7-0BF7-484F-9AB6-8E9312A50FEB} = {12DEA530-7ABA-4B24-B629-E231AA36C365}
 		{BCD38560-9570-40CF-8B7B-D22C20DD6EDE} = {4264F4C7-0BF7-484F-9AB6-8E9312A50FEB}
+		{DA92F560-B467-4744-9002-7475466C9DCD} = {387CFE47-D0AC-4191-9FAA-EB9203519A05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52753D02-BF5A-4DDE-BB5E-4FA5E12E0C8F}
