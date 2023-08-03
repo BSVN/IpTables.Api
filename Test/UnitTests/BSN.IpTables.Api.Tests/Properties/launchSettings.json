@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IpTables.Api.Tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
