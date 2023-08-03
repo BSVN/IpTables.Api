@@ -15,16 +15,18 @@ on:
 
 env:
   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+  DOTNET_VERSION: '6.0.412' # The .NET SDK version to use
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-and-test:
+    name: build-and-test-${{matrix.os}}
     strategy:
       matrix:
         include: 
           - solution: BSN.IpTables.Api.sln
-            os: windows-2022
+            os: [windows-2022, ubuntu-latest]
             artifact: VS2022
 
     # The type of runner that the job will run on
@@ -42,23 +44,18 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/cache@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
-        path: ${{ github.workspace }}/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
-    
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
 
-    - name: nuget restore
-      run: nuget restore -Verbosity quiet
+    - name: Install dependencies
+      run: dotnet restore
 
     - name: Build
       id: build
-      run: |
-        msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m ${{ matrix.solution }}
+      run: dotnet build --configuration Release --no-restore
+
     - name: gitversion
       id: gitversion
       run: |
@@ -67,24 +64,18 @@ jobs:
         echo "::set-output name=GitAssemblyInformationalVersion::$($env:GitAssemblyInformationalVersion)"
         echo "::set-output name=GitBuildVersion::$($env:GitBuildVersion)"
         echo "::set-output name=GitBuildVersionSimple::$($env:GitBuildVersionSimple)"
+
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
         # Artifact name
-        name: ${{ matrix.artifact }}
+        name: Test Results
         # A file, directory or wildcard pattern that describes what to upload
-        path: '**/Release/*.vsix'
+        path: 'Build/artifacts/*.xml'
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: |
-          test-results/**/*.xml
-          test-results/**/*.trx
-          test-results/**/*.json
 
     - name: Dump steps context
       env:
