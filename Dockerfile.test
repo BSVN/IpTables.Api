@@ -5,3 +5,14 @@ RUN wget https://aka.ms/getvsdbgsh && \
     sh getvsdbgsh -v latest  -l /vsdbg
 
 RUN apt-get update && apt-get install iptables -y
+
+# For adding sudo inside docker https://stackoverflow.com/a/48329093/1539100
+
+RUN apt-get update \
+ && apt-get install -y sudo
+
+RUN adduser --disabled-password --gecos '' docker
+RUN adduser docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER docker

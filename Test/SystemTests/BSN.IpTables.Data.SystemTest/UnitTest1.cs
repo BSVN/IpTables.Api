@@ -10,7 +10,7 @@ namespace BSN.IpTables.Data.SystemTest
         [SetUp]
         public void Setup()
         {
-            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: new IPTablesLibAdapter());
+            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: new IPTablesBinaryAdapter());
         }
 
         [Test]
