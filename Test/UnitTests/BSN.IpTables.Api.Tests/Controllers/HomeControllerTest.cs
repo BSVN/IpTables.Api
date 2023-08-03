@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace IpTables.Api.Tests.Controllers
 {
+    [TestFixture]
     public class HomeControllerTest
     {
         [SetUp]

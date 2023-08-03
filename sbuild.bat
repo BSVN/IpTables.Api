@@ -8,7 +8,7 @@
 :: This Batch file is under https://softwareengineering.stackexchange.com/a/339375/69869 code style
 ::::::::::::::::::::::::::::::::::::::::::::
 @cls
-@title Build script for Resa solution
+@title Build script for Resaa solution
 @echo off
 setlocal EnableDelayedExpansion
 
@@ -54,11 +54,11 @@ exit /B
 :BUILD VAL_NEED_GSUDO
     if %~1 equ 1 (
         echo "Run with gsudo"
-        gsudo powershell.exe -NoProfile -ExecutionPolicy Bypass "& {& '%~dp0build\build.ps1' %ARGS%}"
+        gsudo powershell.exe -NoProfile -ExecutionPolicy Bypass "& {& '%~dp0Build\build.ps1' %ARGS%}"
     ) else (
         if %~1 equ 0 (
             echo "Run without gsudo"
-            powershell.exe -NoProfile -ExecutionPolicy Bypass "& {& '%~dp0build\build.ps1' %ARGS%}"
+            powershell.exe -NoProfile -ExecutionPolicy Bypass "& {& '%~dp0Build\build.ps1' %ARGS%}"
         ) else (
             echo "VAL_NEED_GSUDO must be valid value, the current value is" %~1
             exit /B 1

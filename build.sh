@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euox pipefail
 
+# For bootstrapping build process in linux (Ubuntu, CentOS)
+
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
@@ -62,7 +64,7 @@ dotnet tool restore
 
 dotnet --info
 
-cd build/ && dotnet cake linux-build.cake "$@" && cd ..
+cd Build/ && dotnet cake linux-build.cake "$@" && cd ..
 
 if [ -f 'build/build-call-control-system.cake' ]
 then
