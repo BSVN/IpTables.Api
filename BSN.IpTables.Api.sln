@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.dockerignore = .dockerignore
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
+		Dockerfile.test = Dockerfile.test
 		LICENSE = LICENSE
 		README.md = README.md
 		testEnvironments.json = testEnvironments.json

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IpTables.Api.Tests.Controllers
 {
-    internal class HomeControolerTest
+    internal class HomeControllerTest
     {
         [SetUp]
         public void Initialize()
