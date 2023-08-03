@@ -60,14 +60,14 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-    - name: Build with Cake
-      uses: cake-build/cake-action@v1
-      with:
-        target: JustBuild
-        script-path: Build/linux-build.cake
-        verbosity: Diagnostic
-        arguments: |
-          version: ${{ env.PRODUCT_VERSION }}
+#    - name: Build with Cake
+#      uses: cake-build/cake-action@v1
+#      with:
+#        target: JustBuild
+#        script-path: Build/linux-build.cake
+#        verbosity: Diagnostic
+#        arguments: |
+#          version: ${{ env.PRODUCT_VERSION }}
 
     - name: Build
       id: build
@@ -96,14 +96,14 @@ jobs:
             fi
 
     # run tests with built project
-    - name: Test with Cake
-      uses: cake-build/cake-action@v1
-      with:
-        target: JustTest
-        script-path: Build/linux-build.cake
-        verbosity: Diagnostic
-        arguments: |
-          version: ${{ env.PRODUCT_VERSION }}
+#    - name: Test with Cake
+#      uses: cake-build/cake-action@v1
+#      with:
+#        target: JustTest
+#        script-path: Build/linux-build.cake
+#        verbosity: Diagnostic
+#        arguments: |
+#          version: ${{ env.PRODUCT_VERSION }}
 
     - name: Test
       run: |
