@@ -7,7 +7,7 @@
 var target = Argument("target", "Default");
 var profile = Argument("profile", IsRunningOnWindows() ? "dotnetFramework" : "dotnetcore");
 var targetPlatform = Argument("targetPlatform", "windowsservercore-20H2");
-var version = Argument("version", "1.1.0");
+var version = Argument("projectVersion", "1.1.0");
 var dockerRegistry = Argument("dockerRegistry", "harbor.resaa.net/mci/");
 
 // TODO: .Net Framework projects failed with Release configuration, so default configuration for .Net Framework is Debug,
