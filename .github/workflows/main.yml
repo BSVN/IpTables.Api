@@ -16,6 +16,7 @@ on:
 env:
   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
   DOTNET_VERSION: '6.0.412' # The .NET SDK version to use
+  PRODUCT_VERSION: '0.1.0'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -59,10 +60,19 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+    - name: Build with Cake
+      uses: cake-build/cake-action@v1
+      with:
+        target: JustBuild
+        script-path: Build/linux-build.cake
+        verbosity: Diagnostic
+        arguments: |
+          version: ${{ env.PRODUCT_VERSION }}
+
     - name: Build
       id: build
       run: dotnet build --configuration Release --no-restore
-
+    
     - name: Git Version
       id: gitversion
       uses: codacy/git-version@2.7.1
@@ -86,10 +96,19 @@ jobs:
             fi
 
     # run tests with built project
+    - name: Test with Cake
+      uses: cake-build/cake-action@v1
+      with:
+        target: JustTest
+        script-path: Build/linux-build.cake
+        verbosity: Diagnostic
+        arguments: |
+          version: ${{ env.PRODUCT_VERSION }}
+
     - name: Test
       run: |
         dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
-        dotnet test --no-restore --no-build --configuration $config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+        dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
