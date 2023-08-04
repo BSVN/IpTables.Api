@@ -7,7 +7,7 @@
           "type": "BSN.IpTables.Domain.IIpTablesSystem, BSN.IpTables.Domain"
         }
       ],
-      "instanceScope": "SingleInstance"
+      "instanceScope": "single-instance"
     }
   ]
 }
