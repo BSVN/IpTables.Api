@@ -1,10 +1,15 @@
 {
-    "version": "1",
-    "environments": [
-        {
-            "name": "Docker dotnet/sdk",
-            "type": "docker",
-            "dockerFile": "Dockerfile.test"
-        }
-    ]
+  "version": "1",
+  "environments": [
+    {
+      "name": "Docker dotnet/sdk",
+      "type": "docker",
+      "dockerFile": "Dockerfile.test"
+    },
+    {
+      "name": "WSL-Ubuntu",
+      "type": "wsl",
+      "wslDistribution": "Ubuntu"
+    }
+  ]
 }
