@@ -1,4 +1,5 @@
 ﻿using BSN.IpTables.Api.Controllers;
+using BSN.IpTables.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -28,7 +29,9 @@ namespace IpTables.Api.Tests.Controllers
 
             var mockLoggerFactory = new Mock<ILoggerFactory>();
             mockLoggerFactory.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => mockLogger.Object);
-            controller = new HomeController(mockLoggerFactory.Object);
+
+            var mockIpTablesSystem = new Mock<IIpTablesSystem>();
+            controller = new HomeController(mockLoggerFactory.Object, mockIpTablesSystem.Object);
         }
 
         [Test]

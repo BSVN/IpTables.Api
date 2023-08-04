@@ -1,0 +1,12 @@
+﻿{
+  "components": [
+    {
+      "type": "BSN.IpTables.Data.IpTablesDotNetSystem, BSN.IpTables.Data",
+      "servics": [
+        {
+          "type": "BSN.IpTables.Domain.IIpTablesSystem, BSN.IpTables.Domain"
+        }
+      ]
+    }
+  ]
+}

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Source\BSN.IpTables.Data\BSN.IpTables.Data.csproj" />
+    <ProjectReference Include="..\..\..\Source\BSN.IpTables.Domain\BSN.IpTables.Domain.csproj" />
   </ItemGroup>
 
 </Project>
