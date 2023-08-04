@@ -1,4 +1,4 @@
-﻿using BSN.IpTables.Api.Controllers;
+﻿using BSN.IpTables.Api.Controllers.V1;
 using BSN.IpTables.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

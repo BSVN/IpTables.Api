@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BSN.IpTables.Api</name>
+    </assembly>
+    <members>
+        <member name="M:BSN.IpTables.Api.ConfigureSwaggerOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <summary>
+            Configure each API discovered for Swagger Documentation
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:BSN.IpTables.Api.ConfigureSwaggerOptions.Configure(System.String,Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <summary>
+            Configure Swagger Options. Inherited from the Interface
+            </summary>
+            <param name="name"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:BSN.IpTables.Api.ConfigureSwaggerOptions.CreateVersionInfo(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiVersionDescription)">
+            <summary>
+            Create information about the version of the API
+            </summary>
+            <param name="description"></param>
+            <returns>Information about the API</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:BSN.IpTables.Api.Startup" -->
+    </members>
+</doc>

@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IpTables API",
+    "description": "\r\nIpTables.Api is the RESTful server which applies iptables rules to block or allow IP addresses on request from a remote client.\r\nIpTables.Api maintains the list of blocked IP addresses which may be updated on the fly from many sources.\r\nIpTables.Api also solves the problem of concurrent modifications to iptables since the requests are serialized.\r\n                            ",
+    "termsOfService": "https://github.com/BSVN/IpTables.Api",
+    "license": {
+      "name": "MIT license",
+      "url": "https://github.com/BSVN/IpTables.Api/blob/main/LICENSE"
+    },
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/Home": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}
