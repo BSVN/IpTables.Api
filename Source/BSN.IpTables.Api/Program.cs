@@ -17,12 +17,14 @@ namespace BSN.IpTables.Api
 
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory((containerBuilder) =>
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+            builder.Host.ConfigureContainer<ContainerBuilder>((containerBuilder) =>
             {
                 containerBuilder.RegisterModule(autoFacConfigurationModule);
                 //containerBuilder.RegisterType<IpTablesDotNetSystem>().As<IIpTablesSystem>().SingleInstance();
             }
-            ));
+            );
+
             // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
