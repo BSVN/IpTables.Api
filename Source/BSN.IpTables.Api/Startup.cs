@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Configuration;
+using AutoMapper;
+using BSN.IpTables.Presentation.Dto.V1;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -56,6 +58,7 @@ namespace BSN.IpTables.Api
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.ConfigureOptions<ConfigureSwaggerOptions>();
+            ConfigureAutoMapper(services);
         }
 
         public void Configure<App>(App app, IWebHostEnvironment env) where App : IApplicationBuilder, IEndpointRouteBuilder, IHost
@@ -80,6 +83,17 @@ namespace BSN.IpTables.Api
 
 
             app.MapControllers();
+        }
+
+        private void ConfigureAutoMapper(IServiceCollection services)
+        {
+            var mappingConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new AppServiceViewMapperProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         private static bool IsLinux

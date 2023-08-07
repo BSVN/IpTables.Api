@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace BSN.IpTables.Domain
 {
+    public enum IpVersion
+    {
+        V4 = 4,
+        V6 = 6
+    }
+
     public static class Chain
     {
         public const string INPUT = "INPUT";

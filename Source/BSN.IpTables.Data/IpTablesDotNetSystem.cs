@@ -1,5 +1,6 @@
 ﻿using BSN.IpTables.Domain;
 using IPTables.Net;
+using IPTables.Net.Iptables;
 using IPTables.Net.Iptables.Adapter;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,38 @@ namespace BSN.IpTables.Data
         public IpTablesDotNetSystem()
         {
             // TODO: What is difference between LibAdapter and BinaryAdapter
-            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: new IPTablesLibAdapter());
+            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: new IPTablesBinaryAdapter());
         }
 
-        public void ListAllRules()
+        public IpTablesChainSet List()
         {
-            ipTablesSystem.GetRules("", IP_VERSION);
+            IpTablesChainSet rules = ipTablesSystem.GetRules(Table.FILTER, IP_VERSION);
+            return rules;
+        }
+
+        public void AppendRule(IpTablesRule rule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckRule()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteRule()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FlushRules()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertRule()
+        {
+            throw new NotImplementedException();
         }
 
         private readonly IpTablesSystem ipTablesSystem;

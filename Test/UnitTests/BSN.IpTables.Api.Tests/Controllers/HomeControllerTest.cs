@@ -35,9 +35,9 @@ namespace IpTables.Api.Tests.Controllers
         }
 
         [Test]
-        public void IndexNormalCalling_ShloudReturnsOk()
+        public void ListNormalCalling_ShloudReturnsOk()
         {
-            IActionResult result = controller.Index(); 
+            IActionResult result = controller.List(); 
             Assert.That(result, Is.Not.Null);
             Assert.That(result, Is.TypeOf(typeof(OkResult)));
         }

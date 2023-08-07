@@ -17,6 +17,8 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="BSN.Commons.PresentationInfrastructure" Version="1.10.3" />
     <PackageReference Include="IPTables.Net" Version="0.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
@@ -27,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BSN.IpTables.Data\BSN.IpTables.Data.csproj" />
     <ProjectReference Include="..\BSN.IpTables.Domain\BSN.IpTables.Domain.csproj" />
+    <ProjectReference Include="..\BSN.IpTables.Presentation.Dto\BSN.IpTables.Presentation.Dto.csproj" />
   </ItemGroup>
 
   <!-- Export OpenApi Json file in project root directory -->

@@ -1,5 +1,8 @@
-﻿using BSN.IpTables.Domain;
+﻿using BSN.Commons.Responses;
+using BSN.IpTables.Domain;
+using BSN.IpTables.Presentation.Dto.V1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BSN.IpTables.Api.Controllers.V1
 {
@@ -8,19 +11,20 @@ namespace BSN.IpTables.Api.Controllers.V1
     [ApiVersion("1.0")]
     public class HomeController : ControllerBase
     {
-        public HomeController(ILoggerFactory loggerFactory, IIpTablesSystem system)
+        public HomeController(ILoggerFactory loggerFactory, IIpTablesSystem ipTables)
         {
-            _logger = loggerFactory.CreateLogger<HomeController>();
-            _system = system;
+            this.logger = loggerFactory.CreateLogger<HomeController>();
+            this.ipTables = ipTables;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        [ProducesResponseType(typeof(Response<IpTablesChainSetViewModel>), (int)HttpStatusCode.OK)]
+        public IActionResult List()
         {
-            return Ok();
+            return Ok(ipTables.List());
         }
 
-        private readonly ILogger<HomeController> _logger;
-        private readonly IIpTablesSystem _system;
+        private readonly ILogger<HomeController> logger;
+        private readonly IIpTablesSystem ipTables;
     }
 }

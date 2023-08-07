@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{70AE69
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{AC6D41C1-B22B-476B-9D22-25F45F08E122}"
 	ProjectSection(SolutionItems) = preProject
+		Document\iptables-diagram.png = Document\iptables-diagram.png
 		Document\README.md = Document\README.md
 	EndProjectSection
 EndProject
@@ -65,11 +66,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Domain", "Sour
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SystemTests", "SystemTests", "{8785AF2A-53EB-49CF-AE8B-BE3C626A8378}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSN.IpTables.Api.SystemTest", "Test\SystemTests\BSN.IpTables.Api.SystemTest\BSN.IpTables.Api.SystemTest.csproj", "{D932367A-0BA0-4C55-908F-48F45F01244C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Api.SystemTest", "Test\SystemTests\BSN.IpTables.Api.SystemTest\BSN.IpTables.Api.SystemTest.csproj", "{D932367A-0BA0-4C55-908F-48F45F01244C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSN.IpTables.Data", "Source\BSN.IpTables.Data\BSN.IpTables.Data.csproj", "{F28BCB04-E0C9-4A6C-B751-8706C875F249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Data", "Source\BSN.IpTables.Data\BSN.IpTables.Data.csproj", "{F28BCB04-E0C9-4A6C-B751-8706C875F249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSN.IpTables.Data.SystemTest", "Test\SystemTests\BSN.IpTables.Data.SystemTest\BSN.IpTables.Data.SystemTest.csproj", "{DD17F8A4-3731-44F4-978E-72D5908A07A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Data.SystemTest", "Test\SystemTests\BSN.IpTables.Data.SystemTest\BSN.IpTables.Data.SystemTest.csproj", "{DD17F8A4-3731-44F4-978E-72D5908A07A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSN.IpTables.Presentation.Dto", "Source\BSN.IpTables.Presentation.Dto\BSN.IpTables.Presentation.Dto.csproj", "{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +104,10 @@ Global
 		{DD17F8A4-3731-44F4-978E-72D5908A07A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD17F8A4-3731-44F4-978E-72D5908A07A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD17F8A4-3731-44F4-978E-72D5908A07A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +122,7 @@ Global
 		{D932367A-0BA0-4C55-908F-48F45F01244C} = {8785AF2A-53EB-49CF-AE8B-BE3C626A8378}
 		{F28BCB04-E0C9-4A6C-B751-8706C875F249} = {70AE69C7-7213-4193-A514-5D06526EC544}
 		{DD17F8A4-3731-44F4-978E-72D5908A07A0} = {8785AF2A-53EB-49CF-AE8B-BE3C626A8378}
+		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827} = {70AE69C7-7213-4193-A514-5D06526EC544}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52753D02-BF5A-4DDE-BB5E-4FA5E12E0C8F}

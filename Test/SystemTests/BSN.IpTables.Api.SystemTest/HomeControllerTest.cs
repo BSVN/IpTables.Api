@@ -8,7 +8,7 @@ namespace BSN.IpTables.Api.SystemTest
         }
 
         [Test]
-        public void Test1()
+        public void List_ShouldReturnOk()
         {
             Assert.Pass();
         }
