@@ -4,9 +4,9 @@ using IPTables.Net.Iptables;
 using IPTables.Net.Iptables.Adapter;
 using SystemInteract.Local;
 
-namespace BSN.IpTables.Data.SystemTest
+namespace BSN.IpTables.Data.IntegrationTest
 {
-    public class IpTablesDotNetSystemTest
+    public class IpTablesDotNetIntegrationTest
     {
         [SetUp]
         public void Initialize()
