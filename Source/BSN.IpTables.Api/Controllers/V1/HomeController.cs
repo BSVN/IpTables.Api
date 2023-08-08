@@ -21,6 +21,7 @@ namespace BSN.IpTables.Api.Controllers.V1
         [ProducesResponseType(typeof(Response<IpTablesChainSetViewModel>), (int)HttpStatusCode.OK)]
         public IActionResult List()
         {
+            return Ok();
             return Ok(ipTables.List());
         }
 
