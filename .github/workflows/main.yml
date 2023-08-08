@@ -75,7 +75,7 @@ jobs:
     
     - name: Git Version
       id: gitversion
-      uses: codacy/git-version@2.8.0
+      uses: codacy/git-version@2.7.1
 
     # set pr number, if it's a pr build
     - name: set pr build number

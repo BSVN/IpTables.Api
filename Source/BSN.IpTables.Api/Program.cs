@@ -1,3 +1,9 @@
+using Autofac;
+using Autofac.Configuration;
+using Autofac.Extensions.DependencyInjection;
+using BSN.IpTables.Data;
+using BSN.IpTables.Domain;
+
 namespace BSN.IpTables.Api
 {
     public class Program
@@ -6,26 +12,15 @@ namespace BSN.IpTables.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            var startup = new Startup(builder.Configuration);
+            startup.ConfigureServices(builder.Services);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+            builder.Host.ConfigureContainer<ContainerBuilder>(startup.ConfigureContainer);
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
+            startup.Configure(app, app.Environment);
 
             app.Run();
         }
