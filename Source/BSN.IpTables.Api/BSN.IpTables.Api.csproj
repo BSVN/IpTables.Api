@@ -19,7 +19,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="BSN.Commons.PresentationInfrastructure" Version="1.10.3" />
-    <PackageReference Include="IPTables.Net" Version="0.9.1" />
+    <PackageReference Include="IPTables.Net" Version="0.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
@@ -34,7 +34,7 @@
 
   <!-- For Better testing this project -->
   <ItemGroup>
-  	<InternalsVisibleTo Include="BSN.IpTables.Api.SystemTest"/>
+  	<InternalsVisibleTo Include="BSN.IpTables.Api.SystemTest" />
   </ItemGroup>
 
   <!-- Export OpenApi Json file in project root directory -->
