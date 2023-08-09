@@ -74,7 +74,7 @@ namespace BSN.IpTables.Api.SystemTest
 
             startup.Configure(app, app.Environment);
 
-            app.StartAsync();
+            app.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
         }
 
         [OneTimeTearDown]
@@ -91,7 +91,5 @@ namespace BSN.IpTables.Api.SystemTest
         public const string DEFAULT_PREFIX_URL = "api/v1";
         private WebApplication app;
         private const string DEFAULT_SERVERL_URL = "http://localhost";
-
-
     }
 }
