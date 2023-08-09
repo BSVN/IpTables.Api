@@ -74,7 +74,7 @@ namespace BSN.IpTables.Api.SystemTest
 
             startup.Configure(app, app.Environment);
 
-            app.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
+            app.StartAsync().Wait();
         }
 
         [OneTimeTearDown]
