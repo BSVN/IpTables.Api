@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{AC6D41C1-B22B-476B-9D22-25F45F08E122}"
 	ProjectSection(SolutionItems) = preProject
 		Document\iptables-diagram.png = Document\iptables-diagram.png
+		Document\IpTablesWorkFlow.webp = Document\IpTablesWorkFlow.webp
 		Document\README.md = Document\README.md
 	EndProjectSection
 EndProject

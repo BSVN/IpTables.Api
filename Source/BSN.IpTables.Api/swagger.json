@@ -11,7 +11,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/v1/Home": {
+    "/api/v1/Home/List": {
       "get": {
         "tags": [
           "Home"
@@ -36,6 +36,54 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/v1/Home/Insert": {
+      "put": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Home/Append": {
+      "post": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Home/Delete": {
+      "delete": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Home": {
+      "delete": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }
@@ -109,7 +157,11 @@
       "IpTablesChainViewModel": {
         "type": "object",
         "properties": {
-          "chainName": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "tableName": {
             "type": "string",
             "nullable": true
           },
@@ -132,6 +184,40 @@
       },
       "IpTablesRuleViewModel": {
         "type": "object",
+        "properties": {
+          "interfaceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "protocol": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceIp": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationIp": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourcePort": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationPort": {
+            "type": "string",
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "IpVersion": {

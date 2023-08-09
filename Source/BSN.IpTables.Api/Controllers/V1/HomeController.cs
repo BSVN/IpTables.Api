@@ -1,31 +1,80 @@
-﻿using BSN.Commons.Responses;
+﻿using AutoMapper;
+using BSN.Commons.PresentationInfrastructure;
+using BSN.Commons.Responses;
 using BSN.IpTables.Domain;
+using BSN.IpTables.Presentation.Dto.V1.Requests;
 using BSN.IpTables.Presentation.Dto.V1.ViewModels;
+using IPTables.Net.Iptables;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace BSN.IpTables.Api.Controllers.V1
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class HomeController : ControllerBase
     {
-        public HomeController(ILoggerFactory loggerFactory, IIpTablesSystem ipTables)
+        public HomeController(ILoggerFactory loggerFactory, IMapper mapper, IIpTablesSystem ipTables)
         {
             this.logger = loggerFactory.CreateLogger<HomeController>();
+            this.mapper = mapper;
             this.ipTables = ipTables;
         }
 
         [HttpGet]
+        [Route("List")]
         [ProducesResponseType(typeof(Response<IpTablesChainSetViewModel>), (int)HttpStatusCode.OK)]
-        public IActionResult List()
+        public async Task<ActionResult<Response<IpTablesChainSetViewModel>>> List()
         {
-            return Ok();
-            return Ok(ipTables.List());
+            var response = new Response<IpTablesChainSetViewModel>()
+            {
+                StatusCode = ResponseStatusCode.OK,
+                Data = mapper.Map<IpTablesChainSetViewModel>(ipTables.List())
+            };
+            return new JsonResult(response) { StatusCode = (int)response.StatusCode };
+        }
+
+        [HttpPut]
+        [Route("Insert")]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> Insert([FromQuery] RulesCommandServiceInsertRequest request)
+        {
+            var response = new Response()
+            {
+                StatusCode = ResponseStatusCode.OK
+            };
+            return new JsonResult(response) { StatusCode = (int)HttpStatusCode.OK };
+        }
+
+        [HttpPost]
+        [Route("Append")]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> Append([FromQuery] RulesCommandServiceAppendRequest request)
+        {
+            IpTablesRule rule = IpTablesRule.Parse(request.ToString(), null, null);
+            var response = new Response()
+            {
+                StatusCode = ResponseStatusCode.OK
+            };
+            return new JsonResult(response) { StatusCode = (int)HttpStatusCode.OK };
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        [Route("")]
+        [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response>> Delete([FromQuery] RulesCommandServiceDeleteRequest request)
+        {
+            var response = new Response()
+            {
+                StatusCode = ResponseStatusCode.OK
+            };
+            return new JsonResult(response) { StatusCode = (int)HttpStatusCode.OK };
         }
 
         private readonly ILogger<HomeController> logger;
+        private readonly IMapper mapper;
         private readonly IIpTablesSystem ipTables;
     }
 }

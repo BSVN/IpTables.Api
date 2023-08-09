@@ -12,7 +12,7 @@ namespace BSN.IpTables.Domain
         IpTablesChainSet List();
         void AppendRule(IpTablesRule rule);
         void CheckRule();
-        void DeleteRule();
+        void DeleteRule(IpTablesRule rule);
         void FlushRules();
         void InsertRule();
     }

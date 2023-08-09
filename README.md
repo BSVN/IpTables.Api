@@ -11,7 +11,8 @@ This project is powered on [IPTables.Net](https://github.com/splitice/IPTables.N
 
 **Note: This below article is just copy from https://phoenixnap.com/kb/iptables-tutorial-linux-firewall**
 
-![diagram](Document/iptables-diagram.png "IpTables Diagram")
+![IpTablesFlow](Document/IpTablesWorkFlow.webp "IpTables Work Flow")
+*Source: https://www.booleanworld.com/depth-guide-iptables-linux-firewall/*
 
 Network traffic is made up of packets. Data is broken up into smaller pieces (called packets), sent over a network, then put back together. Iptables identifies the packets received and then uses a set of rules to decide what to do with them.
 
@@ -23,6 +24,8 @@ Iptables filters packets based on:
 * Targets: A target is a decision of what to do with a packet. Typically, this is to accept it, drop it, or reject it (which sends an error back to the sender).
 
 ### Tables and Chains
+
+![diagram](Document/iptables-diagram.png "IpTables Tables and Chain")
 
 Linux firewall iptables has four default tables. We will list all four along with the chains each table contains.
 

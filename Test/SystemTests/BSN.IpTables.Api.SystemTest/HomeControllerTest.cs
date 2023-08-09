@@ -1,6 +1,7 @@
 using BSN.IpTables.Api.Controllers.V1;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using System.Net;
 
 namespace BSN.IpTables.Api.SystemTest
@@ -12,7 +13,8 @@ namespace BSN.IpTables.Api.SystemTest
         public void Setup()
         {
             factory = new WebApplicationFactory<Program>();
-            client = factory.CreateClient();
+            client = factory.WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(@"Source/BSN.IpTables.Api")
+                ).CreateClient();
         }
 
         [SetUp]
@@ -23,7 +25,7 @@ namespace BSN.IpTables.Api.SystemTest
         [Test]
         public async Task List_ShouldBeOk()
         {
-            HttpResponseMessage response = await client.GetAsync($"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}");
+            HttpResponseMessage response = await client.GetAsync($"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}/List");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
