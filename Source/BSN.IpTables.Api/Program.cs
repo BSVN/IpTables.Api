@@ -6,7 +6,7 @@ using BSN.IpTables.Domain;
 
 namespace BSN.IpTables.Api
 {
-    public class Program
+    public partial class Program
     {
         public static void Main(string[] args)
         {

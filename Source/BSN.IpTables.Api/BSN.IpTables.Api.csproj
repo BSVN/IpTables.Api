@@ -32,6 +32,11 @@
     <ProjectReference Include="..\BSN.IpTables.Presentation.Dto\BSN.IpTables.Presentation.Dto.csproj" />
   </ItemGroup>
 
+  <!-- For Better testing this project -->
+  <ItemGroup>
+  	<InternalsVisibleTo Include="BSN.IpTables.Api.SystemTest"/>
+  </ItemGroup>
+
   <!-- Export OpenApi Json file in project root directory -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
   	<Exec Command="dotnet tool restore" />

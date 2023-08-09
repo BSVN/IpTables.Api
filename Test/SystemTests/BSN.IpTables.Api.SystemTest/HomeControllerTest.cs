@@ -1,6 +1,6 @@
 using BSN.IpTables.Api.Controllers.V1;
 using FluentAssertions;
-using RestSharp;
+using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 
 namespace BSN.IpTables.Api.SystemTest
@@ -8,21 +8,28 @@ namespace BSN.IpTables.Api.SystemTest
     [TestFixture]
     public class HomeControllerTest 
     {
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            factory = new WebApplicationFactory<Program>();
+            client = factory.CreateClient();
+        }
+
         [SetUp]
         public void Initialize()
         {
-            client = TestSetup.CreateDefaultRestClient();
         }
 
         [Test]
-        public void List_ShouldBeOk()
+        public async Task List_ShouldBeOk()
         {
-            RestRequest request = new RestRequest($"{TestSetup.DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}");
-            RestResponse response = client.Get(request);
+            HttpResponseMessage response = await client.GetAsync($"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        private RestClient client;
+        private HttpClient client;
+        private WebApplicationFactory<Program> factory;
         private const string HOME_CONTROLLER_ROUTE_PREFIX = "Home";
+        public const string DEFAULT_PREFIX_URL = "api/v1";
     }
 }
