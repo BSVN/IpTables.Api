@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IPTables.Net" Version="0.9.0" />
+    <PackageReference Include="IPTables.Net" Version="0.9.1" />
     <PackageReference Include="SystemInteract.Local" Version="1.1.3" />
   </ItemGroup>
 
