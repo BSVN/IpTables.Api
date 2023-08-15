@@ -7,12 +7,27 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace BSN.IpTables.Api.SystemTest
 {
     [TestFixture]
     public class HomeControllerTest 
     {
+        public HomeControllerTest()
+        {
+            sampleRule = new RuleInputModel()
+            {
+//                Protocol = "tcp",
+   //             SourceIp = "2.2.2.2",
+                DestinationIp = "1.1.1.1",
+ //               SourcePort = "111",
+  //              DestinationPort = "222",
+                Jump = "DROP"
+            };
+        }
+
+
         [OneTimeSetUp]
         public void Setup()
         {
@@ -26,6 +41,12 @@ namespace BSN.IpTables.Api.SystemTest
         {
         }
 
+        [TearDown]
+        public void Cleanup()
+        {
+
+        }
+
         [Test]
         public async Task List_ShouldBeOk()
         {
@@ -36,30 +57,38 @@ namespace BSN.IpTables.Api.SystemTest
         [Test]
         public async Task AppendWithNormalRule_ShouldBeOk()
         {
-            var ruleParameter = new RuleInputModel()
-            {
-                Protocol = "tcp",
-                SourceIp = "2.2.2.2",
-                DestinationIp = "1.1.1.1",
-                SourcePort = "111",
-                DestinationPort = "222",
-                Jump = "DROP"
-            };
-
+            // Arrange
             var parameter = new RulesCommandServiceAppendRequest()
             {
-                Chain = Chain.INPUT
+                Chain = Chain.INPUT,
+                Data = sampleRule
             };
 
-            // TODO: This ugly method for https://github.com/Cysharp/WebSerializer#nested-type-and-nameprefix
+            string request = $"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}/Append?{SystemTest.Helpers.FlattenObject(parameter).ToQueryString()}";
 
-            var writer = new WebSerializerWriter();
-            WebSerializer.ToQueryString(writer, parameter);
-            writer.AppendConcatenate();
-            writer.NamePrefix = $"{nameof(parameter.Data)}.";
-            WebSerializer.ToQueryString(writer, ruleParameter);
-            string request = $"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}/Append?{writer.GetStringBuilder()}";
-            HttpResponseMessage response = await client.PostAsync(request, new WebSerializerFormUrlEncodedContent(writer));
+            // Act
+            HttpResponseMessage response = await client.PostAsync(request, new StringContent(SystemTest.Helpers.FlattenObject(parameter).ToQueryString()));
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Test]
+        public async Task DeleteWithPreviousExistRule_ShouldBeOk()
+        {
+            // Arrange
+            var parameter = new RulesCommandServiceDeleteRequest()
+            {
+                Chain = Chain.INPUT,
+                Data = sampleRule
+            };
+
+            string request = $"{DEFAULT_PREFIX_URL}/{HOME_CONTROLLER_ROUTE_PREFIX}?{SystemTest.Helpers.FlattenObject(parameter).ToQueryString()}";
+
+            // Act
+            HttpResponseMessage response = await client.DeleteAsync(request);
+
+            // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
@@ -67,6 +96,8 @@ namespace BSN.IpTables.Api.SystemTest
 
         private HttpClient client;
         private WebApplicationFactory<Program> factory;
+        private readonly RuleInputModel sampleRule;
+
         private const string HOME_CONTROLLER_ROUTE_PREFIX = "Home";
         private const string SAMPLE_RULE = "-p tcp ! -f -j DROP --sport 99";
     }

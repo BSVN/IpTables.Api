@@ -38,7 +38,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-j" : "--jump";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -62,7 +62,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-i" : "--in-interface";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -86,7 +86,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-o" : "--out-interface";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -112,7 +112,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-p" : "--protocol";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -137,7 +137,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-s" : "--source";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -158,7 +158,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "-d" : "--destination";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -186,7 +186,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "--sport" : "--source-port";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {
@@ -211,7 +211,7 @@ namespace BSN.IpTables.Domain
             if (!string.IsNullOrEmpty(value))
             {
                 string parameter = compactMode ? "--dport" : "--destination-port";
-                stringBuilder.Append($"{parameter } {value}");
+                stringBuilder.Append($" {parameter } {value}");
             }
             else if (strictMode)
             {

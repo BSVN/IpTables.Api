@@ -176,14 +176,59 @@
         ],
         "parameters": [
           {
-            "name": "request",
+            "name": "Chain",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/RulesCommandServiceDeleteRequest"
-                }
-              ]
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.InterfaceName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Protocol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourceIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourcePort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationPort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Jump",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -218,14 +263,59 @@
         ],
         "parameters": [
           {
-            "name": "request",
+            "name": "Chain",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/RulesCommandServiceDeleteRequest"
-                }
-              ]
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.InterfaceName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Protocol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourceIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourcePort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationPort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Jump",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -458,10 +548,6 @@
         ],
         "type": "integer",
         "format": "int32"
-      },
-      "RulesCommandServiceDeleteRequest": {
-        "type": "object",
-        "additionalProperties": false
       },
       "RulesCommandServiceInsertRequest": {
         "type": "object",
