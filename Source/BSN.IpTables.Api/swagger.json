@@ -45,9 +45,39 @@
         "tags": [
           "Home"
         ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
+                }
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "application/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "text/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         }
       }
@@ -57,9 +87,84 @@
         "tags": [
           "Home"
         ],
+        "parameters": [
+          {
+            "name": "Chain",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.InterfaceName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Protocol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourceIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationIp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.SourcePort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.DestinationPort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Data.Jump",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "application/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "text/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         }
       }
@@ -69,9 +174,39 @@
         "tags": [
           "Home"
         ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/RulesCommandServiceDeleteRequest"
+                }
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "application/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "text/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         }
       }
@@ -81,9 +216,39 @@
         "tags": [
           "Home"
         ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/RulesCommandServiceDeleteRequest"
+                }
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "application/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "text/json; x-api-version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         }
       }
@@ -228,6 +393,34 @@
         "type": "integer",
         "format": "int32"
       },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponseStatusCode"
+              }
+            ]
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "invalidItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvalidItem"
+            },
+            "nullable": true
+          },
+          "isSuccess": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseStatusCode": {
         "enum": [
           200,
@@ -265,6 +458,14 @@
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "RulesCommandServiceDeleteRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RulesCommandServiceInsertRequest": {
+        "type": "object",
+        "additionalProperties": false
       }
     }
   }

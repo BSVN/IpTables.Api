@@ -52,7 +52,8 @@ namespace BSN.IpTables.Api.Controllers.V1
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> Append([FromQuery] RulesCommandServiceAppendRequest request)
         {
-            IpTablesRule rule = IpTablesRule.Parse(request.ToString(), null, null);
+            IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Data}", null, null);
+            ipTables.AppendRule(rule);
             var response = new Response()
             {
                 StatusCode = ResponseStatusCode.OK
