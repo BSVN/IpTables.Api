@@ -107,8 +107,8 @@ jobs:
 
     - name: Test
       run: |
-        dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
-        dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+        sudo dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+        sudo dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
