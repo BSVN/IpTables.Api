@@ -1,5 +1,9 @@
-﻿using BSN.IpTables.Api.Controllers.V1;
+﻿using AutoMapper;
+using BSN.Commons.Responses;
+using BSN.IpTables.Api.Controllers.V1;
 using BSN.IpTables.Domain;
+using BSN.IpTables.Presentation.Dto.V1;
+using BSN.IpTables.Presentation.Dto.V1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -31,15 +35,20 @@ namespace IpTables.Api.Tests.Controllers
             mockLoggerFactory.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => mockLogger.Object);
 
             var mockIpTablesSystem = new Mock<IIpTablesSystem>();
-            controller = new HomeController(mockLoggerFactory.Object, mockIpTablesSystem.Object);
+            var mappingConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new AppServiceViewMapperProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            controller = new HomeController(mockLoggerFactory.Object, mapper, mockIpTablesSystem.Object);
         }
 
         [Test]
         public void ListNormalCalling_ShloudReturnsOk()
         {
-            IActionResult result = controller.List(); 
+            ActionResult<Response<IpTablesChainSetViewModel>> result = controller.List().Result; 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.TypeOf(typeof(OkResult)));
         }
 
         [TearDown] public void TearDown() { }
