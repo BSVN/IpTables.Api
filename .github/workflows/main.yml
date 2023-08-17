@@ -27,7 +27,7 @@ jobs:
       matrix:
         include: 
           - solution: BSN.IpTables.Api.sln
-            os: [ubuntu-latest]
+            os: [ubuntu-20.04]
 
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
@@ -107,8 +107,8 @@ jobs:
 
     - name: Test
       run: |
-        dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
-        dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+        sudo dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+        sudo dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3

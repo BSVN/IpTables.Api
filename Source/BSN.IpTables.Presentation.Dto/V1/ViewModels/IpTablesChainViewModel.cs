@@ -9,8 +9,9 @@ namespace BSN.IpTables.Presentation.Dto.V1.ViewModels
 {
     public class IpTablesChainViewModel
     {
-        public string ChainName { get; set; }
+        public string Name { get; set; }
+        public string TableName { get; set; }
         public IpVersion IpVersion { get; set; }
-        public ICollection<IpTablesRuleViewModel> Rules { get; set; }
+        public IEnumerable<IpTablesRuleViewModel> Rules { get; set; }
     }
 }

@@ -5,7 +5,18 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)/bin/**/*</DefaultItemExcludes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' == 'true'">
+  <PropertyGroup>
+  	<Version>1.2.0</Version>
+  	<AssemblyVersion>1.2.0</AssemblyVersion>
+  	<FileVersion>1.2.0</FileVersion>
+  	<Company>BSN Co.</Company>
+  	<Authors>Seyyed Soroosh Hosseinalipour</Authors>
+  	<Product>IpTables.Api</Product>
+  	<Description />
+  	<Copyright>BSN Copyright © 1402</Copyright>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' == 'true'">
     <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)/obj/container/</BaseIntermediateOutputPath>
     <BaseOutputPath>$(MSBuildProjectDirectory)/bin/container/</BaseOutputPath>
   </PropertyGroup>

@@ -2,6 +2,7 @@
 using IPTables.Net;
 using IPTables.Net.Iptables;
 using IPTables.Net.Iptables.Adapter;
+using IPTables.Net.Iptables.Adapter.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace BSN.IpTables.Data
         public IpTablesDotNetSystem()
         {
             // TODO: What is difference between LibAdapter and BinaryAdapter
-            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: new IPTablesBinaryAdapter());
+            ipTablesAdapter = new IPTablesBinaryAdapter();
+            ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: ipTablesAdapter);
+            inputChain = ipTablesSystem.GetChain(table: Table.FILTER, chain: Chain.INPUT, ipVersion: (int)IpVersion.V4);
+            outputChain = ipTablesSystem.GetChain(table: Table.FILTER, chain: Chain.OUTPUT, ipVersion: (int)IpVersion.V4);
+            table = ipTablesSystem.GetTableAdapter((int)IpVersion.V4);
         }
 
         public IpTablesChainSet List()
@@ -27,7 +32,7 @@ namespace BSN.IpTables.Data
 
         public void AppendRule(IpTablesRule rule)
         {
-            throw new NotImplementedException();
+            table.AddRule(rule);
         }
 
         public void CheckRule()
@@ -35,9 +40,9 @@ namespace BSN.IpTables.Data
             throw new NotImplementedException();
         }
 
-        public void DeleteRule()
+        public void DeleteRule(IpTablesRule rule)
         {
-            throw new NotImplementedException();
+            table.DeleteRule(rule);
         }
 
         public void FlushRules()
@@ -51,6 +56,13 @@ namespace BSN.IpTables.Data
         }
 
         private readonly IpTablesSystem ipTablesSystem;
+        private readonly IpTablesChain inputChain;
+        private readonly IpTablesChain outputChain;
+
+        // FIXME: Dispose
+        private readonly IIPTablesAdapterClient table;
+
+        private readonly IIPTablesAdapter ipTablesAdapter;
         private const int IP_VERSION = 4;
     }
 }

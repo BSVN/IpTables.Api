@@ -7,7 +7,7 @@
 var target = Argument("target", "Default");
 var profile = Argument("profile", IsRunningOnWindows() ? "dotnetFramework" : "dotnetcore");
 var targetPlatform = Argument("targetPlatform", "windowsservercore-20H2");
-var version = Argument("projectVersion", "1.1.0");
+var version = Argument("projectVersion", "1.2.0");
 var dockerRegistry = Argument("dockerRegistry", "harbor.resaa.net/mci/");
 
 // TODO: .Net Framework projects failed with Release configuration, so default configuration for .Net Framework is Debug,
@@ -336,13 +336,18 @@ Task("Build")
 
 	MSBuild("../BSN.IpTables.Api.sln", settings);
 #elif _LINUX_
+	var settings = new DotNetBuildSettings
+	{
+		Configuration = configuration
+	};
+
 	foreach(var project in projects)
 	{
 		if (project.Framework.HasFlag(Project.FrameworkType.DotNetFramework))
 			continue;
 		Information("Project: " + project.Name + " Framework: " + project.Framework);
 
-		DotNetBuild(project.Path + project.ProjectFileName);
+		DotNetBuild(project.Path + project.ProjectFileName, settings);
 	}
 #endif
 });

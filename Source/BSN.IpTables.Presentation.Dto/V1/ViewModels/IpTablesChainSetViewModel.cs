@@ -8,6 +8,6 @@ namespace BSN.IpTables.Presentation.Dto.V1.ViewModels
 {
     public class IpTablesChainSetViewModel
     {
-        public ICollection<IpTablesChainViewModel> IpTablesChains { get; set; }
+        public IEnumerable<IpTablesChainViewModel> IpTablesChains { get; set; }
     }
 }

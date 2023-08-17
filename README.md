@@ -11,7 +11,8 @@ This project is powered on [IPTables.Net](https://github.com/splitice/IPTables.N
 
 **Note: This below article is just copy from https://phoenixnap.com/kb/iptables-tutorial-linux-firewall**
 
-![diagram](Document/iptables-diagram.png "IpTables Diagram")
+![IpTablesFlow](Document/IpTablesWorkFlow.webp "IpTables Work Flow")
+*Source: https://www.booleanworld.com/depth-guide-iptables-linux-firewall/*
 
 Network traffic is made up of packets. Data is broken up into smaller pieces (called packets), sent over a network, then put back together. Iptables identifies the packets received and then uses a set of rules to decide what to do with them.
 
@@ -23,6 +24,8 @@ Iptables filters packets based on:
 * Targets: A target is a decision of what to do with a packet. Typically, this is to accept it, drop it, or reject it (which sends an error back to the sender).
 
 ### Tables and Chains
+
+![diagram](Document/iptables-diagram.png "IpTables Tables and Chain")
 
 Linux firewall iptables has four default tables. We will list all four along with the chains each table contains.
 
@@ -63,3 +66,33 @@ The Raw table is used to exempt packets from connection tracking. The raw table 
 #### 5. Security (Optional)
 
 Some versions of Linux also use a Security table to manage special access rules. This table includes input, output, and forward chains, much like the filter table.
+
+## Usage
+
+To run, follow below steps
+
+#. clone this project
+#. set exe permissions (such as `chmod +x build.sh`)
+#. run `build.sh --configuration=Release`
+#. set exe permissions (such as `chmod +x Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api`)
+#. simply run web service with `Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api --urls=http://localhost:8002`
+
+### Kamailio Example
+```kamailio
+loadmodule "http_client.so"
+loadmodule "htable.so"
+... 
+modparam("htable", "htable", "ipban=>size=8;autoexpire=600;")
+... 
+if (!pike_check_req()) {
+  xlog("L_ALERT","ALERT: pike blocking $rm from $fu (IP:$si:$sp)\n");
+  $sht(ipban=>$si) = 1;
+  http_client_query("http://localhost:8002/api/v1/rules/Append?Chain=INPUT&Data.SourceIp=$si&Data.Jump=DROP", "$var(apinfo)");
+  exit;
+}
+... 
+event_route[htable:expired:ipban] {
+  xlog("mytable record expired $shtrecord(key) => $shtrecord(value)\n");
+  http_client_query("http://localhost:8082/api/v1/rules/Append?Chain=INPUT&Data.SourceIp=$shtrecord(key)&Data.Jump=DROP", "$var(apinfo)");
+}
+```
