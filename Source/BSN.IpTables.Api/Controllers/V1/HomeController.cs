@@ -55,6 +55,7 @@ namespace BSN.IpTables.Api.Controllers.V1
             var chains = new IpTablesChainSet((int)IpVersion.V4);
 
             IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Data}", null, chains);
+            //IpTablesRule rule = IpTablesRule.Parse($"-A INPUT -m udp --protocol udp --source 1.1.1.1 -i eth0 --sport 1 -j DROP", null, chains);
             ipTables.AppendRule(rule);
 
             var response = new Response()

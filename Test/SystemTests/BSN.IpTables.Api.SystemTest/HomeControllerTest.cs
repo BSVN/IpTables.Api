@@ -18,11 +18,11 @@ namespace BSN.IpTables.Api.SystemTest
         {
             sampleRule = new RuleInputModel()
             {
-//                Protocol = "tcp",
-   //             SourceIp = "2.2.2.2",
+                Protocol = "tcp",
+                SourceIp = "2.2.2.2",
                 DestinationIp = "1.1.1.1",
- //               SourcePort = "111",
-  //              DestinationPort = "222",
+                SourcePort = "111",
+                DestinationPort = "222",
                 Jump = "DROP"
             };
         }

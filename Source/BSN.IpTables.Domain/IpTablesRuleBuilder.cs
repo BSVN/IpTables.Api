@@ -20,6 +20,7 @@ namespace BSN.IpTables.Domain
             stringBuilder = new StringBuilder();
             this.compactMode = compactMode;
             this.strictMode = strictMode;
+            this.trasnportModuleUsed = false;
         }
 
         /// <summary>
@@ -111,8 +112,10 @@ namespace BSN.IpTables.Domain
         {
             if (!string.IsNullOrEmpty(value))
             {
+                // TODO: in some case -p means port, so we have to deeper investigate
                 string parameter = compactMode ? "-p" : "--protocol";
                 stringBuilder.Append($" {parameter } {value}");
+                protocol = value;
             }
             else if (strictMode)
             {
@@ -187,6 +190,7 @@ namespace BSN.IpTables.Domain
             {
                 string parameter = compactMode ? "--sport" : "--source-port";
                 stringBuilder.Append($" {parameter } {value}");
+                trasnportModuleUsed = true;
             }
             else if (strictMode)
             {
@@ -212,6 +216,7 @@ namespace BSN.IpTables.Domain
             {
                 string parameter = compactMode ? "--dport" : "--destination-port";
                 stringBuilder.Append($" {parameter } {value}");
+                trasnportModuleUsed = true;
             }
             else if (strictMode)
             {
@@ -227,11 +232,18 @@ namespace BSN.IpTables.Domain
         /// <returns></returns>
         public override string ToString()
         {
+            if (trasnportModuleUsed)
+            {
+                stringBuilder.Insert(0, $"-m {protocol}");
+            }
+
             return stringBuilder.ToString();
         }
 
         private readonly StringBuilder stringBuilder;
         private bool compactMode;
         private bool strictMode;
+        private bool trasnportModuleUsed;
+        private string protocol;
     }
 }
