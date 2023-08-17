@@ -27,7 +27,7 @@ jobs:
       matrix:
         include: 
           - solution: BSN.IpTables.Api.sln
-            os: [ubuntu-latest]
+            os: [ubuntu-20.04]
 
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
