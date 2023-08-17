@@ -71,11 +71,11 @@ Some versions of Linux also use a Security table to manage special access rules.
 
 To run, follow below steps
 
-#. clone this project
-#. set exe permissions (such as `chmod +x build.sh`)
-#. run `build.sh --configuration=Release`
-#. set exe permissions (such as `chmod +x Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api`)
-#. simply run web service with `Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api --urls=http://localhost:8002`
+1. clone this project
+1. set exe permissions (such as `chmod +x build.sh`)
+1. run `build.sh --configuration=Release`
+1. set exe permissions (such as `chmod +x Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api`)
+1. simply run web service with `Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api --urls=http://localhost:8002`
 
 ### Kamailio Example
 ```kamailio
