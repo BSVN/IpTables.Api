@@ -9,18 +9,33 @@ namespace BSN.IpTables.Domain
 {
     public class IpTablesRuleBuilder
     {
+        // TODO: Add documentation for all input method parameters
 
         public IpTablesRuleBuilder() :
             this(compactMode: false, strictMode: false)
         {
         }
 
+        /// <summary>
+        /// Construct rule builder with full control of behaviour 
+        /// </summary>
+        /// <param name="compactMode">
+        /// Determine type of name of parameter in rule result
+        /// <example>
+        /// if compactMode set to true, result of AddJump is --jump value
+        /// but if compactMode set to false, result of AddJump is -j value
+        /// </example>
+        /// </param>
+        /// <param name="strictMode">
+        /// Determine empty value cause to error or not, and in general determine strict input validation or not
+        /// </param>
         public IpTablesRuleBuilder(bool compactMode, bool strictMode)
         {
             stringBuilder = new StringBuilder();
             this.compactMode = compactMode;
             this.strictMode = strictMode;
             this.trasnportModuleUsed = false;
+            this.protocol = string.Empty;
         }
 
         /// <summary>
@@ -36,15 +51,15 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddJump(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "-j" : "--jump";
-                stringBuilder.Append($" {parameter } {value}");
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "-j" : "--jump";
+            stringBuilder.Append($" {parameter} {value}");
 
             return this;
         }
@@ -60,15 +75,15 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddInboundInterface(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "-i" : "--in-interface";
-                stringBuilder.Append($" {parameter } {value}");
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "-i" : "--in-interface";
+            stringBuilder.Append($" {parameter} {value}");
 
             return this;
         }
@@ -84,15 +99,15 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddOutboundInterface(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "-o" : "--out-interface";
-                stringBuilder.Append($" {parameter } {value}");
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "-o" : "--out-interface";
+            stringBuilder.Append($" {parameter} {value}");
 
             return this;
         }
@@ -110,17 +125,17 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddProtocol(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                // TODO: in some case -p means port, so we have to deeper investigate
-                string parameter = compactMode ? "-p" : "--protocol";
-                stringBuilder.Append($" {parameter } {value}");
-                protocol = value;
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            // TODO: in some case -p means port, so we have to investigate more
+            string parameter = compactMode ? "-p" : "--protocol";
+            stringBuilder.Append($" {parameter} {value}");
+            protocol = value;
 
             return this;
         }
@@ -135,38 +150,38 @@ namespace BSN.IpTables.Domain
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public IpTablesRuleBuilder AddSource(string value, [CallerMemberName] string caller = null)
+        public IpTablesRuleBuilder AddSourceIp(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "-s" : "--source";
-                stringBuilder.Append($" {parameter } {value}");
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "-s" : "--source";
+            stringBuilder.Append($" {parameter} {value}");
 
             return this;
         }
 
         /// <summary>
-        /// Destination specification. <seealso cref="AddSource"/>
+        /// Destination specification. <seealso cref="AddSourceIp"/>
         /// </summary>
         /// <param name="value"></param>
         /// <param name="caller">Internal usage</param>
         /// <returns></returns>
-        public IpTablesRuleBuilder AddDestination(string value, [CallerMemberName] string caller = null)
+        public IpTablesRuleBuilder AddDestinationIp(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "-d" : "--destination";
-                stringBuilder.Append($" {parameter } {value}");
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "-d" : "--destination";
+            stringBuilder.Append($" {parameter} {value}");
 
             return this;
         }
@@ -186,16 +201,16 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddSourcePort(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "--sport" : "--source-port";
-                stringBuilder.Append($" {parameter } {value}");
-                trasnportModuleUsed = true;
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "--sport" : "--source-port";
+            stringBuilder.Append($" {parameter} {value}");
+            trasnportModuleUsed = true;
 
             return this;
         }
@@ -212,16 +227,17 @@ namespace BSN.IpTables.Domain
         /// <exception cref="ArgumentNullException"></exception>
         public IpTablesRuleBuilder AddDestinationPort(string value, [CallerMemberName] string caller = null)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
-                string parameter = compactMode ? "--dport" : "--destination-port";
-                stringBuilder.Append($" {parameter } {value}");
-                trasnportModuleUsed = true;
+                if (strictMode)
+                    throw new ArgumentNullException(caller);
+                return this;
             }
-            else if (strictMode)
-            {
-                throw new ArgumentNullException(caller);
-            }
+
+            string parameter = compactMode ? "--dport" : "--destination-port";
+            stringBuilder.Append($" {parameter} {value}");
+            trasnportModuleUsed = true;
+
 
             return this;
         }
@@ -241,8 +257,8 @@ namespace BSN.IpTables.Domain
         }
 
         private readonly StringBuilder stringBuilder;
-        private bool compactMode;
-        private bool strictMode;
+        private readonly bool compactMode;
+        private readonly bool strictMode;
         private bool trasnportModuleUsed;
         private string protocol;
     }

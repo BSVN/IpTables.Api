@@ -37,8 +37,8 @@ namespace BSN.IpTables.Presentation.Dto.V1.InputModels
         {
             var ruleBuilder = new IpTablesRuleBuilder();
             ruleBuilder.AddProtocol(Protocol)
-                .AddSource(SourceIp)
-                .AddDestination(DestinationIp)
+                .AddSourceIp(SourceIp)
+                .AddDestinationIp(DestinationIp)
                 .AddSourcePort(SourcePort)
                 .AddDestinationPort(DestinationPort)
                 .AddJump(Jump);

@@ -13,8 +13,12 @@ namespace BSN.IpTables.Api.Controllers.V1
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/rules")]
+    [Route("api/v{version:apiVersion}")]
     public class HomeController : ControllerBase
     {
+        // TODO: Check exception and error state for all methods (actions)
+
         public HomeController(ILoggerFactory loggerFactory, IMapper mapper, IIpTablesSystem ipTables)
         {
             this.logger = loggerFactory.CreateLogger<HomeController>();
@@ -54,8 +58,8 @@ namespace BSN.IpTables.Api.Controllers.V1
         {
             var chains = new IpTablesChainSet((int)IpVersion.V4);
 
-            IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Data}", null, chains);
-            //IpTablesRule rule = IpTablesRule.Parse($"-A INPUT -m udp --protocol udp --source 1.1.1.1 -i eth0 --sport 1 -j DROP", null, chains);
+            IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Rule}", null, chains);
+            // TODO: Check exception
             ipTables.AppendRule(rule);
 
             var response = new Response()
@@ -74,7 +78,8 @@ namespace BSN.IpTables.Api.Controllers.V1
         {
             var chains = new IpTablesChainSet((int)IpVersion.V4);
 
-            IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Data}", null, chains);
+            IpTablesRule rule = IpTablesRule.Parse($"-A {request.Chain} {request.Rule}", null, chains);
+            // TODO: Check exception
             ipTables.DeleteRule(rule);
 
             var response = new Response()

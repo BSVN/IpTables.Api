@@ -36,7 +36,6 @@ namespace BSN.IpTables.Presentation.Dto.V1
                     TableName = source.Table,
                     IpVersion = (Domain.IpVersion)source.IpVersion,
                     Rules = context.Mapper.Map<IEnumerable<IpTablesRuleViewModel>>(source.Rules)
-                    
                 };
             }
         }

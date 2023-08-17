@@ -8,7 +8,6 @@ using System.Web;
 
 namespace BSN.IpTables.Api.SystemTest
 {
-
     /// <summary>
     /// <para>
     /// TODO: This ugly method for https://github.com/Cysharp/WebSerializer#nested-type-and-nameprefix
@@ -51,20 +50,20 @@ namespace BSN.IpTables.Api.SystemTest
             return JObject.FromObject(source)
                 .Descendants()
                 .OfType<JValue>()
-                .ToDictionary(jv => jv.Path, jv => jv.Value<object>());
+                .ToDictionary(jsonValue => jsonValue.Path, jsonValue => jsonValue.Value<object>());
         }
 
-        public static string ToQueryString(this Dictionary<string, object> dict)
+        public static string ToQueryString(this Dictionary<string, object> dictionary)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            foreach (var kvp in dict)
+            foreach (var keyValuePair in dictionary)
             {
-                sb.Append("&")
-                    .Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}");
+                stringBuilder.Append("&")
+                    .Append($"{keyValuePair.Key}={HttpUtility.UrlEncode(keyValuePair.Value.ToString())}");
             }
 
-            return sb.ToString()
+            return stringBuilder.ToString()
                 .Trim('&');
         }
     }

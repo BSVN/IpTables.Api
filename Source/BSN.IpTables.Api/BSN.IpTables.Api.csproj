@@ -32,7 +32,7 @@
     <ProjectReference Include="..\BSN.IpTables.Presentation.Dto\BSN.IpTables.Presentation.Dto.csproj" />
   </ItemGroup>
 
-  <!-- For Better testing this project -->
+  <!-- To enable accessing internal objects, for testing purposes. -->
   <ItemGroup>
   	<InternalsVisibleTo Include="BSN.IpTables.Api.SystemTest" />
   </ItemGroup>
