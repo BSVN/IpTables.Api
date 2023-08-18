@@ -6,4 +6,4 @@
 # nvm use 18.16.1
 
 npm install -g "autorest"
-autorest --powershell --input-file:"../BSN.IpTables.Api/swagger.json" --verbose
+autorest configuration.yaml
