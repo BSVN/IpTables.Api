@@ -40,7 +40,11 @@ namespace BSN.IpTables.Api
                 Type = "string",
                 Example = new OpenApiString("00:00:00")
             });
-            options.UseAllOfToExtendReferenceSchemas();
+
+            // Because capable to use autorest we must to diable AllOf
+            // for more information please see https://stackoverflow.com/q/59788412/1539100
+            // and https://github.com/unchase/Unchase.Swashbuckle.AspNetCore.Extensions/issues/13
+            // options.UseAllOfToExtendReferenceSchemas();
         }
 
         /// <summary>
