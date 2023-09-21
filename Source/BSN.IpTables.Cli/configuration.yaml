@@ -9,6 +9,10 @@ inlining-threshold: 100
 tag: v1
 input-file: ../BSN.IpTables.Api/swagger.json
 powershell: true
+
+use:
+  - '@autorest/powershell@4.0.648'
+
 namespace: BSN.IpTables.V1
 verbose: true
 resourcegroup-append: true
