@@ -16,6 +16,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -45,6 +46,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -74,6 +76,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -103,6 +106,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
@@ -141,6 +145,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
@@ -179,6 +184,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
@@ -217,6 +223,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -304,6 +311,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -391,6 +399,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -478,6 +487,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",
@@ -565,6 +575,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",
@@ -652,6 +663,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",

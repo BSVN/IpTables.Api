@@ -7,3 +7,7 @@
 
 npm install -g "autorest"
 autorest configuration.yaml
+
+# Build Module
+Write-Host $PSScriptRoot
+& $PSScriptRoot\generated\build-module.ps1
