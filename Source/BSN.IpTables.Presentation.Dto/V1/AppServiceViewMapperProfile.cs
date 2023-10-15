@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BSN.IpTables.Presentation.Dto.V1.ViewModels;
 using IPTables.Net.Iptables;
+using IPTables.Net.Iptables.Modules;
+using IPTables.Net.Iptables.Modules.Core;
 using System;
 using System.Linq;
 
@@ -44,9 +46,15 @@ namespace BSN.IpTables.Presentation.Dto.V1
         {
             public IpTablesRuleViewModel Convert(IpTablesRule source, IpTablesRuleViewModel destination, ResolutionContext context)
             {
-                string rule = source.ToString();
+                // TODO: Check if does not CoreModule
+                var detailedSource = (source.ModuleData.FirstOrDefault() as CoreModule) ?? throw new NullReferenceException("Source must be not null");
                 return new IpTablesRuleViewModel()
                 {
+                    SourceIp = detailedSource.Source.Null ? string.Empty : detailedSource.Source.Value.Address.ToString(),
+                    DestinationIp = detailedSource.Destination.Null ? string.Empty : detailedSource.Destination.Value.Address.ToString(),
+                    Protocol = detailedSource.Protocol.Null ? string.Empty : detailedSource.Protocol.Value.ToString(),
+                    Target = detailedSource.Target.ToString(),
+                    InterfaceName = (detailedSource.InInterface.Value ?? detailedSource.OutInterface.Value)?.ToString() ?? string.Empty,
                 };
             }
         }
