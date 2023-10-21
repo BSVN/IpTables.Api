@@ -72,7 +72,6 @@ namespace BSN.IpTables.Api.Controllers.V1
 
         [HttpDelete]
         [Route("Delete")]
-        [Route("")]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> Delete([FromQuery] RulesCommandServiceDeleteRequest request)
         {

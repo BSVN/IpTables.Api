@@ -16,6 +16,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -45,6 +46,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -74,6 +76,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "Success",
@@ -103,16 +106,13 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
-                }
-              ]
+              "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
             }
           }
         ],
@@ -145,16 +145,13 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
-                }
-              ]
+              "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
             }
           }
         ],
@@ -187,16 +184,13 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Insert",
         "parameters": [
           {
             "name": "request",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
-                }
-              ]
+              "$ref": "#/components/schemas/RulesCommandServiceInsertRequest"
             }
           }
         ],
@@ -229,6 +223,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -316,6 +311,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -403,6 +399,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Append",
         "parameters": [
           {
             "name": "Chain",
@@ -490,6 +487,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",
@@ -577,6 +575,7 @@
         "tags": [
           "Home"
         ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",
@@ -664,267 +663,7 @@
         "tags": [
           "Home"
         ],
-        "parameters": [
-          {
-            "name": "Chain",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.InterfaceName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Protocol",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourceIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourcePort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationPort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Jump",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "application/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "text/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/Home": {
-      "delete": {
-        "tags": [
-          "Home"
-        ],
-        "parameters": [
-          {
-            "name": "Chain",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.InterfaceName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Protocol",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourceIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourcePort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationPort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Jump",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "application/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "text/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/rules": {
-      "delete": {
-        "tags": [
-          "Home"
-        ],
-        "parameters": [
-          {
-            "name": "Chain",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.InterfaceName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Protocol",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourceIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationIp",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.SourcePort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.DestinationPort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Rule.Jump",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "application/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              },
-              "text/json; x-api-version=1.0": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1": {
-      "delete": {
-        "tags": [
-          "Home"
-        ],
+        "operationId": "Delete",
         "parameters": [
           {
             "name": "Chain",
@@ -1041,19 +780,10 @@
         "type": "object",
         "properties": {
           "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseStatusCode"
-              }
-            ]
+            "$ref": "#/components/schemas/ResponseStatusCode"
           },
           "data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IpTablesChainSetViewModel"
-              }
-            ],
-            "nullable": true
+            "$ref": "#/components/schemas/IpTablesChainSetViewModel"
           },
           "message": {
             "type": "string",
@@ -1085,11 +815,7 @@
             "nullable": true
           },
           "ipVersion": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IpVersion"
-              }
-            ]
+            "$ref": "#/components/schemas/IpVersion"
           },
           "rules": {
             "type": "array",
@@ -1151,11 +877,7 @@
         "type": "object",
         "properties": {
           "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResponseStatusCode"
-              }
-            ]
+            "$ref": "#/components/schemas/ResponseStatusCode"
           },
           "message": {
             "type": "string",

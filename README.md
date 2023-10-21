@@ -1,4 +1,5 @@
 # IpTables.Api
+
 API for local iptables management
 
 IpTables.Api is the RESTful server which applies iptables rules to block or allow IP addresses on request from a remote client.
@@ -9,10 +10,10 @@ This project is powered on [IPTables.Net](https://github.com/splitice/IPTables.N
 
 ## How iptables Work
 
-**Note: This below article is just copy from https://phoenixnap.com/kb/iptables-tutorial-linux-firewall**
+**Note: This below article is just copy from <https://phoenixnap.com/kb/iptables-tutorial-linux-firewall>**
 
 ![IpTablesFlow](Document/IpTablesWorkFlow.webp "IpTables Work Flow")
-*Source: https://www.booleanworld.com/depth-guide-iptables-linux-firewall/*
+*Source: <https://www.booleanworld.com/depth-guide-iptables-linux-firewall/>*
 
 Network traffic is made up of packets. Data is broken up into smaller pieces (called packets), sent over a network, then put back together. Iptables identifies the packets received and then uses a set of rules to decide what to do with them.
 
@@ -36,7 +37,7 @@ The Filter table is the most frequently used one. It acts as a bouncer, deciding
 * Input: the rules in this chain control the packets received by the server.
 * Output: this chain controls the packets for outbound traffic.
 * Forward: this set of rules controls the packets that are routed through the server.
- 
+
 #### 2. Network Address Translation (NAT)
 
 This table contains NAT (Network Address Translation) rules for routing packets to networks that cannot be accessed directly. When the destination or source of the packet has to be altered, the NAT table is used. It includes the following chains:
@@ -78,6 +79,7 @@ To run, follow below steps
 1. simply run web service with `Source/BSN.IpTables.Api/bin/Release/net6.0/BSN.IpTables.Api --urls=http://localhost:8002`
 
 ### Kamailio Example
+
 ```kamailio
 loadmodule "http_client.so"
 loadmodule "htable.so"

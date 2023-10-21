@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -40,7 +41,21 @@ namespace BSN.IpTables.Api
                 Type = "string",
                 Example = new OpenApiString("00:00:00")
             });
-            options.UseAllOfToExtendReferenceSchemas();
+
+            // Because capable to use autorest we must to diable AllOf
+            // for more information please see https://stackoverflow.com/q/59788412/1539100
+            // and https://github.com/unchase/Unchase.Swashbuckle.AspNetCore.Extensions/issues/13
+            // options.UseAllOfToExtendReferenceSchemas();
+
+            // operationId is an optional unique string used to identify an operation.
+            // If provided, these IDs must be unique among all operations described in your API.
+            //
+            // However, AutoRest seems to use that to identify each method.
+            // I found a Github question / issue: <see href:https://github.com/Azure/autorest/issues/2647/>
+            // where people addressed this by configuring AutoRest to use tags instead of operation ID to identify method.
+            //
+            // <see href:https://stackoverflow.com/a/60875558/1539100/>
+            options.CustomOperationIds(description => (description.ActionDescriptor as ControllerActionDescriptor)?.ActionName);
         }
 
         /// <summary>
