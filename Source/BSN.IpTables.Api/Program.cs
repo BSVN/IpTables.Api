@@ -22,6 +22,7 @@ namespace BSN.IpTables.Api
 
             startup.Configure(app, app.Environment);
 
+            Console.WriteLine("IpTablesProgram:Main(): before run");
             app.Run();
         }
     }

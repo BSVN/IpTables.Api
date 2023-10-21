@@ -24,6 +24,17 @@ namespace BSN.IpTables.Api
         /// <param name="options"></param>
         public void Configure(SwaggerGenOptions options)
         {
+            // Add host to generated swagger file (swagger.json)
+            options.AddServer(new OpenApiServer {
+                Url = "{protocol}://{host}",
+                Description = "IpTables Test Server",
+                Variables = new Dictionary<string, OpenApiServerVariable>
+                {
+                    { "protocol", new OpenApiServerVariable { Default = "http", Enum = new List<string> { "http", "https" } } },
+                    { "host", new OpenApiServerVariable { Default = "192.168.21.56:8080" } }
+                }
+            });
+
             // add swagger document for every API version discovered
             foreach (var description in _provider.ApiVersionDescriptions)
             {

@@ -398,3 +398,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Current project custom files
+Source/BSN.IpTables.Cli/generated

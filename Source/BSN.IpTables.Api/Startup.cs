@@ -64,11 +64,22 @@ namespace BSN.IpTables.Api
         public void Configure<App>(App app, IWebHostEnvironment env) where App : IApplicationBuilder, IEndpointRouteBuilder, IHost
         {
             var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
+            Console.WriteLine("IpTables:StartupConfigure(): environment: " + env.EnvironmentName);
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
+                Console.WriteLine("IpTables:StartupConfigure(): development mode, swagger is enabled");
+                app.UseSwagger(options =>
+                {
+                    // Add hosts for Swagger UI
+                    options.PreSerializeFilters.Add((swagger, httpReq) =>
+                    {
+                        swagger.Servers = new List<OpenApiServer> {
+                            new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}", Description = "IpTables Local Test Server" },
+                            new OpenApiServer { Url = "http://192.168.21.56:8080", Description = "IpTables Remote Test Server" }
+                        };
+                    });
+                });
                 app.UseSwaggerUI(options =>
                 {
                     foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
@@ -80,7 +91,6 @@ namespace BSN.IpTables.Api
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
         }
