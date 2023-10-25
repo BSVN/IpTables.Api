@@ -45,6 +45,8 @@ namespace BSN.IpTables.Api.Controllers.V1
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response>> Insert([FromQuery] RulesCommandServiceInsertRequest insert_request)
         {
+            // Input parameter name could not be "request" because it cause error in Autorest code generation.
+
             logger.LogInformation("HomeController: Insert is called");
             var response = new Response()
             {

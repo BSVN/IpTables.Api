@@ -17,6 +17,7 @@ namespace BSN.IpTables.Data
         public IpTablesDotNetSystem()
         {
             Console.WriteLine("IpTablesDotNetSystem()");
+
             // TODO: What is difference between LibAdapter and BinaryAdapter
             ipTablesAdapter = new IPTablesBinaryAdapter();
             ipTablesSystem = new IpTablesSystem(system: new LocalFactory(), tableAdapter: ipTablesAdapter);

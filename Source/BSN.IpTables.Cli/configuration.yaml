@@ -7,7 +7,7 @@ subject-prefix: $(service-name)
 inlining-threshold: 100
 
 tag: v1
-input-file: ./swagger.json
+input-file: ../BSN.IpTables.Api/swagger.json
 powershell: true
 
 use:
