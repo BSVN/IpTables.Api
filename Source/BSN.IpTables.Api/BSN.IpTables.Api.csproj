@@ -8,6 +8,7 @@
     <DockerfileContext>..\..</DockerfileContext>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <DocumentationFile>BSN.IpTables.Api.xml</DocumentationFile>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +41,7 @@
   <!-- Export OpenApi Json file in project root directory -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
   	<Exec Command="dotnet tool restore" />
-    <Message Text="Swagger genereration command: dotnet swagger tofile --output swagger.json $(OutputPath)\$(AssemblyName).dll v1, " Importance="high"/>
+    <Message Text="Swagger genereration command: dotnet swagger tofile --output swagger.json $(OutputPath)\$(AssemblyName).dll v1, " Importance="high" />
   	<Exec Command="dotnet swagger tofile --output swagger.json $(OutputPath)\$(AssemblyName).dll v1 " />
   </Target>
 </Project>

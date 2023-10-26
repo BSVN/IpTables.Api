@@ -400,4 +400,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Current project custom files
+
+# TODO: A better solution should be picked to consider custom added commands and commiting generated API.
 Source/BSN.IpTables.Cli/generated
