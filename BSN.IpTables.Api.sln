@@ -85,6 +85,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSN.IpTables.Data.IntegrationTest", "Test\IntegrationTests\BSN.IpTables.Data.IntegrationTest\BSN.IpTables.Data.IntegrationTest.csproj", "{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BSN.IpTables.Cli", "BSN.IpTables.Cli", "{C61D2326-DF76-4213-9B69-D70FED715099}"
+	ProjectSection(SolutionItems) = preProject
+		Source\BSN.IpTables.Cli\configuration.yaml = Source\BSN.IpTables.Cli\configuration.yaml
+		Source\BSN.IpTables.Cli\Generate-PowerShellClient.ps1 = Source\BSN.IpTables.Cli\Generate-PowerShellClient.ps1
+		Source\BSN.IpTables.Cli\README.md = Source\BSN.IpTables.Cli\README.md
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B20411E0-4592-467B-A6E0-11D7B72394BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +128,10 @@ Global
 		{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20411E0-4592-467B-A6E0-11D7B72394BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20411E0-4592-467B-A6E0-11D7B72394BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20411E0-4592-467B-A6E0-11D7B72394BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20411E0-4592-467B-A6E0-11D7B72394BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,6 +148,7 @@ Global
 		{0A4FDC69-EBD9-40DB-918C-1EB3BCBAA827} = {70AE69C7-7213-4193-A514-5D06526EC544}
 		{71CC466A-3B2D-4BAD-A477-6FFCAD7B9A11} = {12DEA530-7ABA-4B24-B629-E231AA36C365}
 		{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9} = {71CC466A-3B2D-4BAD-A477-6FFCAD7B9A11}
+		{C61D2326-DF76-4213-9B69-D70FED715099} = {70AE69C7-7213-4193-A514-5D06526EC544}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52753D02-BF5A-4DDE-BB5E-4FA5E12E0C8F}

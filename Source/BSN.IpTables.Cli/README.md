@@ -26,247 +26,138 @@ This module was primarily generated via [AutoRest](https://github.com/Azure/auto
 
 - None
 
-## Development
-
-For information on how to develop for `Az.Databricks`, see [how-to-generate-cli.md](../../Document/how-to-generate-cli.md).
-<!-- endregion -->
-
 ---
 
 ### AutoRest Configuration
 
 > see <https://aka.ms/autorest>
 
-``` yaml
-branch: a078cebc3964c8968d141906c613794ca0453861
-require:
-  - $(this-folder)/../readme.azure.noprofile.md
-  - $(repo)/specification/databricks/resource-manager/readme.md
-try-require:
-  - $(repo)/specification/databricks/resource-manager/readme.powershell.md
+## Cli Generation Details
 
-module-version: 1.2.0
-title: Databricks
-subject-prefix: $(service-name)
+The Cli is generated based on `IpTables.Api` swagger file. The swagger file is generated as a post-process in IpTables.Api build process. It can be created manulally by running (in IpTables.Api directory):
 
-inlining-threshold: 100
+    dotnet tool restore
+    dotnet swagger tofile --output swagger.json bin\Debug\net6.0\BSN.IpTables.Api.dll v1
 
-resourcegroup-append: true
-identity-correction-for-post: true
-nested-object-to-string: true
+Autorest is used to generate Powershell Cli from swagger file. `configuration.yaml` is Autorest config file. After generating Cli
 
-directive:
-  # Remove cmdlet, Private link related resource should be ignored. 
-  - where:
-     subject: PrivateEndpointConnection|PrivateLinkResource
-    remove: true
-  # Remove the unexpanded parameter set
-  - where:
-      variant: ^Create$|^CreateViaIdentityExpanded$|^Update$|^UpdateViaIdentity$
-    remove: true
-  # Hide CreateViaIdentity for customization
-  - where:
-      variant: ^CreateViaIdentity$
-    hide: true
+## Generated Commands Info
 
-  # Rename the parameter name to follow Azure PowerShell best practice
-  - where:
-      parameter-name: SkuName
-    set:
-      parameter-name: Sku
-  - where:
-      parameter-name: CustomVirtualNetworkIdValue
-    set:
-      parameter-name: VirtualNetworkId
-  - where:
-      parameter-name: CustomPublicSubnetNameValue
-    set:
-      parameter-name: PublicSubnetName
-  - where:
-      parameter-name: CustomPrivateSubnetNameValue
-    set:
-      parameter-name: PrivateSubnetName
-  - where:
-      parameter-name: PrepareEncryptionValue
-    set:
-      parameter-name: PrepareEncryption
-  - where:
-      parameter-name: ValueKeySource
-    set:
-      parameter-name: EncryptionKeySource
-  - where:
-      parameter-name: ValueKeyName
-    set:
-      parameter-name: EncryptionKeyName
-  - where:
-      parameter-name: ValueKeyVersion
-    set:
-      parameter-name: EncryptionKeyVersion
-  - where:
-      parameter-name: ValueKeyVaultUri
-    set:
-      parameter-name: EncryptionKeyVaultUri
-  - where:
-      parameter-name: RequireInfrastructureEncryptionValue
-    set:
-      parameter-name: RequireInfrastructureEncryption
-  - where:
-      parameter-name: PeeringName
-    set:
-      parameter-name: Name
-  - where:
-      parameter-name: AmlWorkspaceIdValue
-    set:
-      parameter-name: AmlWorkspaceId
+All Cli commands are encapsulated in `BsnIPTablesCli` module. To show all commands run:
 
-  - where:
-      parameter-name: EnableNoPublicIPValue
-    set:
-      parameter-name: EnableNoPublicIP
-  - where:
-      parameter-name: PublicIPNameValue
-    set:
-      parameter-name: PublicIPName
+    Get-Command -Module BsnIPTablesCli
 
-  - where:
-      parameter-name: KeyVaultPropertyKeyName
-    set:
-      parameter-name: KeyVaultKeyName
-  - where:
-      parameter-name: KeyVaultPropertyKeyVaultUri
-    set:
-      parameter-name: KeyVaultUri
-  - where:
-      parameter-name: KeyVaultPropertyKeyVersion
-    set:
-      parameter-name: KeyVaultKeyVersion
+Sample output:
 
-  - where:
-      parameter-name: LoadBalancerBackendPoolNameValue
-    set:
-      parameter-name: LoadBalancerBackendPoolName
-  - where:
-      parameter-name: LoadBalancerIdValue
-    set:
-      parameter-name: LoadBalancerId
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Function        Add-BsnIPTablesCli                                 1.2.0      BsnIPTablesCli
+    Function        Get-BsnIPTablesCli                                 1.2.0      BsnIPTablesCli
+    Function        Remove-BsnIPTablesCli                              1.2.0      BsnIPTablesCli
 
-  - where:
-      parameter-name: NatGatewayNameValue
-    set:
-      parameter-name: NatGatewayName
+To see a command input parameters run:
 
-  - where:
-      parameter-name: StorageAccountNameValue
-    set:
-      parameter-name: StorageAccountName
+    Get-Command -Name Add-BsnIPTablesCli -Args Cert: -Syntax
 
-  - where:
-      parameter-name: StorageAccountSkuNameValue
-    set:
-      parameter-name: StorageAccountSku
+Sample output:
 
-  - where:
-      parameter-name: VnetAddressPrefixValue
-    set:
-      parameter-name: VnetAddressPrefix
+    Add-BsnIPTablesCli -ServerAddress <string> [-Chain <string>] [-RuleDestinationIP <string>] [-RuleDestinationPort <string>] [-RuleInterfaceName <string>] [-RuleJump <string>] [-RuleProtocol <string>] [-RuleSourceIP <string>] [-RuleSourcePort <string>] [-Break] [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <uri>] [-ProxyCredential <pscredential>] [-ProxyUseDefaultCredentials] [-WhatIf] [-Confirm] [<CommonParameters>]
 
-  # Update property names related to CMK
-  - where:
-      model-name: Workspace
-      property-name: ValueKeyName
-    set:
-      property-name: EncryptionKeyName
-  - where:
-      model-name: Workspace
-      property-name: ValueKeySource
-    set:
-      property-name: EncryptionKeySource
-  - where:
-      model-name: Workspace
-      property-name: ValueKeyVaultUri
-    set:
-      property-name: EncryptionKeyVaultUri
-  - where:
-      model-name: Workspace
-      property-name: ValueKeyVersion
-    set:
-      property-name: EncryptionKeyVersion
-  - where:
-      model-name: Workspace
-      property-name: PrepareEncryptionValue
-    set:
-      property-name: PrepareEncryption
-  - where:
-      model-name: Workspace
-      property-name: RequireInfrastructureEncryptionValue
-    set:
-      property-name: RequireInfrastructureEncryption
-  - where:
-      model-name: Workspace
-      property-name: EnableNoPublicIPValue
-    set:
-      property-name: EnableNoPublicIP
 
-  # Rename parameters of VNetPeering cmdlet
-  - where:
-      parameter-name: DatabrickAddressSpaceAddressPrefix
-    set:
-      parameter-name: DatabricksAddressSpacePrefix
-  - where:
-      parameter-name: RemoteAddressSpaceAddressPrefix
-    set:
-      parameter-name: RemoteAddressSpacePrefix
-  - where:
-      parameter-name: DatabrickVirtualNetworkId
-    set:
-      parameter-name: DatabricksVirtualNetworkId
+To see full help for a command run:
 
-  - where:
-      subject: AccessConnector
-      parameter-name: ConnectorName
-    set:
-      parameter-name: Name
-  - where:
-      verb: New
-      subject: AccessConnector
-      parameter-name: IdentityUserAssignedIdentity
-    set:
-      parameter-name: UserAssignedIdentity
+    Get-Help Add-BsnIPTablesCli -Full
 
-  # Remove the set Workspace cmdlet
-  - where:
-      verb: Set
-      subject: Workspace
-    remove: true
+## Sample Commands
 
-  # Remove the set AccessConnector cmdlet
-  - where:
-      verb: Set
-      subject: AccessConnector
-    remove: true
+1. List all existing IpTable rules.
 
-  # Hide the New/Update Workspace cmdlet for customization
-  - where:
-      verb: New|Update
-      subject: Workspace
-    hide: true
-  # Hide the Set VNetPeering cmdlet for customization
-  - where:
-      verb: Set
-      subject: VNetPeering
-    hide: true
-    set: 
-      verb: Update
+    Get-BsnIPTablesCli -serverAddress 192.168.21.56:8080
 
-  - where:
-      model-name: Workspace
-    set:
-      format-table:
-        properties:
-          - Name
-          - ResourceGroupName
-          - Location
-          - ManagedResourceGroupId
-        labels:
-          ManagedResourceGroupId: Managed Resource Group ID
-```
+Sample output:
+
+    "name": "INPUT",
+    "tableName": "filter",
+    "ipVersion": 4,
+    "rules": [
+      {
+        "interfaceName": "",
+        "protocol": "tcp",
+        "sourceIp": "1.2.3.4",
+        "destinationIp": "",
+        "target": "DROP"
+      }
+    ]
+
+Which means only one rule exists. The rule casues to drop incoming tcp packets from `1.2.3.4` IPv4 address.
+
+2. Drop all incoming ICMP packets from any source, on all interfaces:
+
+    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+
+3. Remove the previous rule:
+
+    Remove-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+ 
+## Verification
+
+Each CLI command is equivalent to an `iptables` command. Valid execution of CLI commands could be verified by checking existing rules in the destination server.
+Another way to verify a successful operation is to check rule enforcement in a traffic flow. Below are some scenarios to test IpTables by these two methods.
+
+Scenario 1: Add a rule with `iptables`, then list existing rules with CLI and check its existence.
+
+First flush rules:
+
+    iptables -t filter -F
+
+Then add a rule to drop tcp packets from specific IP adddress and port:
+
+    iptables -A INPUT -p tcp -s 1.2.3.4 --dport 80 -j DROP
+
+List rules with CLI:
+
+    Get-BsnIPTablesCli -serverAddress 192.168.21.56:8080
+
+Check and find added rule in output:
+
+    "name": "INPUT",
+      "tableName": "filter",
+      "ipVersion": 4,
+      "rules": [
+        {
+          "interfaceName": "",
+          "protocol": "tcp",
+          "sourceIp": "1.2.3.4",
+          "destinationIp": "",
+          "target": "DROP"
+        }
+
+Scenario 2: Add a rule with CLI, then list existing rules with `iptables` and check its existence:
+
+Add a rule to drop tcp packets to specific IP adddress range on specific interface:
+
+    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain OUTPUT -RuleInterfaceName ens160 -RuleProtocol tcp -RuleDestinationIP 69.171.224.0/19 -RuleJump DROP
+
+List output rules with `iptables`:
+
+    iptables -L OUTPUT -n --line-numbers
+
+Check and find added rule in output:
+
+    Chain OUTPUT (policy ACCEPT)
+    num  target     prot opt source               destination
+    1    DROP       tcp  --  0.0.0.0/0            69.171.224.0/19
+
+Scenario 3: Add a rule with CLI, then check its effect in traffic:
+
+Check ping to the server:
+
+    ping 192.168.21.56
+
+Add a rule to drop incoming icmp packets:
+
+    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+
+Check ping to the server, it should not be available:
+
+    ping 192.168.21.56

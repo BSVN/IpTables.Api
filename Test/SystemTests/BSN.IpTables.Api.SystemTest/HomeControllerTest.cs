@@ -17,7 +17,7 @@ namespace BSN.IpTables.Api.SystemTest
     [TestFixture("")]
     [TestFixture("/rules")]
     [TestFixture(HomeControllerTest.HOME_CONTROLLER_ROUTE_PREFIX)]
-    public class HomeControllerTest 
+    public class HomeControllerTest
     {
         public HomeControllerTest(string controllerRoutePrefix)
         {
@@ -40,6 +40,13 @@ namespace BSN.IpTables.Api.SystemTest
             factory = new WebApplicationFactory<Program>();
             client = factory.WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(@"Source/BSN.IpTables.Api")
                 ).CreateClient();
+        }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            factory.Dispose();
+            client.Dispose();
         }
 
         [SetUp]

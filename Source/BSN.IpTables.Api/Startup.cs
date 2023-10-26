@@ -68,7 +68,17 @@ namespace BSN.IpTables.Api
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
+                app.UseSwagger(options =>
+                {
+                    // Add hosts for Swagger UI
+                    options.PreSerializeFilters.Add((swagger, httpReq) =>
+                    {
+                        swagger.Servers = new List<OpenApiServer> {
+                            new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}", Description = "IpTables Local Test Server" },
+                            new OpenApiServer { Url = "http://192.168.21.56:8080", Description = "IpTables Remote Test Server" }
+                        };
+                    });
+                });
                 app.UseSwaggerUI(options =>
                 {
                     foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
@@ -80,7 +90,6 @@ namespace BSN.IpTables.Api
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
         }
