@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    ip-tables:
+        image: resaa.ir/iptables-api:1.2.0
+        container_name: ip-tables
+        network_mode: "host"
+        privileged: true
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:8080
+            - TZ=Asia/Tehran
+            - AUTO_MIGRATE=true

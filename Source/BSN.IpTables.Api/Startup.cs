@@ -64,11 +64,10 @@ namespace BSN.IpTables.Api
         public void Configure<App>(App app, IWebHostEnvironment env) where App : IApplicationBuilder, IEndpointRouteBuilder, IHost
         {
             var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-            Console.WriteLine("IpTables:StartupConfigure(): environment: " + env.EnvironmentName);
+
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
-                Console.WriteLine("IpTables:StartupConfigure(): development mode, swagger is enabled");
                 app.UseSwagger(options =>
                 {
                     // Add hosts for Swagger UI
