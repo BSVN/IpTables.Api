@@ -43,6 +43,10 @@ catch {
 Write-Host "Generating Cli .." -ForegroundColor Green
 autorest configuration.yaml --verbose
 
+# Copy custom files
+Write-Host "Copy custom files .." -ForegroundColor Green
+cp custom/* generated/custom
+
 # Build Module
 Write-Host "Building generating Cli .." -ForegroundColor Green
 .\generated\build-module.ps1
