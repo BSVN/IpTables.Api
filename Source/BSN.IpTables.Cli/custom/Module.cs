@@ -13,6 +13,9 @@ namespace BSN.IpTables.V1
         partial void BeforeCreatePipeline(global::System.Management.Automation.InvocationInfo invocationInfo, ref BSN.IpTables.V1.Runtime.HttpPipeline pipeline)
         {
             Console.WriteLine("##### Module::BeforeCreatePipeline @@@@@");
+
+            if (pipeline == null)
+                Console.WriteLine("##### Module::BeforeCreatePipeline @@@@@ pipeline is null!");
             pipeline.Append(SendAsync);
         }
 
@@ -23,6 +26,8 @@ namespace BSN.IpTables.V1
 
             // FIXME: replace URI with server address loaded by loadServerAddress' method
             
+            if (next == null)
+                Console.WriteLine("##### Module::SendAsync @@@@@ next is null!");
             return await next.SendAsync(request, callback);
         }
 
