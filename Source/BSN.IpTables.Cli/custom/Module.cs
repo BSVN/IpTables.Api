@@ -7,16 +7,16 @@ namespace BSN.IpTables.V1
         partial void AfterCreatePipeline(global::System.Management.Automation.InvocationInfo invocationInfo, ref BSN.IpTables.V1.Runtime.HttpPipeline pipeline)
         {
             Console.WriteLine("##### Module::AfterCreatePipeline @@@@@");
-            Console.WriteLine("##### Module::AfterCreatePipeline @@@@@ " + invocationInfo.ToString() + " @@@@ " + pipeline.ToString());
+            
+            if (pipeline == null)
+                Console.WriteLine("##### Module::BeforeCreatePipeline @@@@@ pipeline is null!");
+
+            pipeline.Append(SendAsync);
         }
 
         partial void BeforeCreatePipeline(global::System.Management.Automation.InvocationInfo invocationInfo, ref BSN.IpTables.V1.Runtime.HttpPipeline pipeline)
         {
             Console.WriteLine("##### Module::BeforeCreatePipeline @@@@@");
-
-            if (pipeline == null)
-                Console.WriteLine("##### Module::BeforeCreatePipeline @@@@@ pipeline is null!");
-            pipeline.Append(SendAsync);
         }
 
         public async System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> SendAsync(System.Net.Http.HttpRequestMessage request, BSN.IpTables.V1.Runtime.IEventListener callback, BSN.IpTables.V1.Runtime.ISendAsync next)
