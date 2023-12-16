@@ -12,14 +12,8 @@
   },
   "servers": [
     {
-      "url": "http://{serverAddress}",
-      "description": "IpTables Test Server",
-      "variables": {
-        "serverAddress": {
-          "default": "192.168.21.56:8080",
-          "description": "Target Server Address"
-        }
-      }
+      "url": "http://192.168.21.67:8080",
+      "description": "IpTables Test Server"
     }
   ],
   "paths": {

@@ -12,22 +12,22 @@ if ($PSEdition -ne 'Core') {
   Write-Error 'This script requires PowerShell Core to execute. [Note] Generated cmdlets will work in both PowerShell Core or Windows PowerShell.'
 }
 
-try {
-    Write-Host "Nvm is installed, version" $(nvm --version)
-}
-catch {
-    Write-Error "Nvm is not installed, install it manually to continue."
-}
+# try {
+    # Write-Host "Nvm is installed, version" $(nvm --version)
+# }
+# catch {
+    # Write-Error "Nvm is not installed, install it manually to continue."
+# }
 
 # 18.18.0 is the latest LTS node version
-New-Variable -Name desiredNodeVersion -Value 'v18.18.0' -Option ReadOnly
-if ($(nvm current) -ne $desiredNodeVersion) {
-    nvm install $desiredNodeVersion
-    nvm use $desiredNodeVersion
-}
-else {
-    Write-Host "Node is installed, version" $desiredNodeVersion
-}
+# New-Variable -Name desiredNodeVersion -Value 'v18.18.0' -Option ReadOnly
+# if ($(nvm current) -ne $desiredNodeVersion) {
+    # nvm install $desiredNodeVersion
+    # nvm use $desiredNodeVersion
+# }
+# else {
+    # Write-Host "Node is installed, version" $desiredNodeVersion
+# }
 
 try {
     (autorest --version).Split([Environment]::NewLine) | Select -First 1
@@ -39,6 +39,10 @@ catch {
 
 # Below command should be used if Autorest is not clean:
 # autorest --reset
+
+# Copy custom files
+Write-Host "Copy custom files .." -ForegroundColor Green
+cp custom/* generated/custom
 
 Write-Host "Generating Cli .." -ForegroundColor Green
 autorest configuration.yaml --verbose
