@@ -7,20 +7,14 @@ function Connect-BsnIPTablesCli {
         $ServerAddress = Read-Host "Enter the target server address"
 
         # Save the ServerAddress in a session variable
-        $script:Global:SessionServerAddress = $ServerAddress
-
-        # Write the server address to a file
-        $ServerAddress | Out-File -FilePath "D:\Iptables\IpTables.Api\Source\BSN.IpTables.Cli\serverAddress.txt"
-
-        Write-Output "Connect begin"
+        $env:ServerAddress = $ServerAddress
     }
 
     process {
-        Write-Output "Connect process, server address: $ServerAddress"
+        Write-Output "Connected To : $ServerAddress"
     }
 
     end {
-        Write-Output "Connect end"
     }
 }
 

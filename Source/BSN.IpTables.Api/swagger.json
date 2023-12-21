@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "http://192.168.21.67:8080",
+      "url": "https://resaa.net/IpTables",
       "description": "IpTables Test Server"
     }
   ],
