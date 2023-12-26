@@ -15,8 +15,5 @@ function Connect-BsnIPTablesCli {
     }
 }
 
-# Prompt the user to enter the server address outside the function
-$enteredServerAddress = Read-Host "Enter the target server address"
-
 # Call the function with the entered server address
 Connect-BsnIPTablesCli -ServerAddress $enteredServerAddress
