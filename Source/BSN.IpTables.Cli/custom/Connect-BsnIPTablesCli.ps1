@@ -1,11 +1,11 @@
 function Connect-BsnIPTablesCli {
     [CmdletBinding()]
-    param()
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$ServerAddress
+    )
 
     begin {
-        # Prompt the user to enter the server address
-        $ServerAddress = Read-Host "Enter the target server address"
-
         # Save the ServerAddress in a session variable
         $env:ServerAddress = $ServerAddress
     }
