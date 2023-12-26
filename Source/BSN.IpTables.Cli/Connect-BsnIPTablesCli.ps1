@@ -6,6 +6,8 @@ function Connect-BsnIPTablesCli {
     )
 
     process {
+        # Save the ServerAddress in a session variable
+        $env:ServerAddress = $ServerAddress
         Write-Output "Connected To: $ServerAddress"
         # Perform other actions related to IPTables or any other tasks here
     }
