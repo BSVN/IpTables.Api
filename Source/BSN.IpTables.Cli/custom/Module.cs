@@ -28,6 +28,7 @@ namespace BSN.IpTables.V1
         {
             string serverAddress = Environment.GetEnvironmentVariable("ServerAddress");
             string requestUriString = request.RequestUri.ToString();
+            Console.WriteLine("##### Module::SendAsync @@@@@" + " " + requestUriString);
 
             // Find the indices of the first and second "/" in the RequestUri
             int initialBackslashIndex = requestUriString.IndexOf('/');
@@ -55,6 +56,7 @@ namespace BSN.IpTables.V1
             if (next == null)
                 throw new NullReferenceException("Next is null!");
 
+            Console.WriteLine("##### Module::SendAsync after change: @@@@@" + " " + requestUriString);
             return await next.SendAsync(request, callback);
         }
 

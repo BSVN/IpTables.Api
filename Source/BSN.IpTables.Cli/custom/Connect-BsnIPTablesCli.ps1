@@ -1,8 +1,11 @@
 function Connect-BsnIPTablesCli {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory = $true)]
-        [string]$ServerAddress
+        [Parameter(Mandatory)]
+        [BSN.IpTables.V1.Category('Uri')]
+        [System.String]
+        # Target Server Address
+        ${ServerAddress}
     )
 
     begin {
@@ -11,12 +14,9 @@ function Connect-BsnIPTablesCli {
     }
 
     process {
-        Write-Output "Connected To : $ServerAddress"
+        Write-Output "Connected to: $ServerAddress"
     }
 
     end {
     }
 }
-
-# Call the function to connect and save the server address
-Connect-BsnIPTablesCli
