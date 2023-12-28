@@ -26,7 +26,7 @@ namespace BSN.IpTables.Api
         {
             // Add host to generated swagger file (swagger.json)
             options.AddServer(new OpenApiServer {
-                Url = "https://resaa.net/IpTables",
+                Url = "http://resaa.net/",
                 Description = "IpTables Test Server"
             });
 

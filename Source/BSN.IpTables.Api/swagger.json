@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://resaa.net/IpTables",
+      "url": "http://resaa.net/",
       "description": "IpTables Test Server"
     }
   ],

@@ -28,7 +28,7 @@ namespace BSN.IpTables.V1
         {
             string serverAddress = Environment.GetEnvironmentVariable("ServerAddress");
             string requestUriString = request.RequestUri.ToString();
-            Console.WriteLine("##### Module::SendAsync @@@@@" + " " + requestUriString);
+            Console.WriteLine("##### Module::SendAsync @@@@@" + " " + request.RequestUri.ToString());
 
             // Find the indices of the first and second "/" in the RequestUri
             int initialBackslashIndex = requestUriString.IndexOf('/');
@@ -38,7 +38,7 @@ namespace BSN.IpTables.V1
             // Check if both backslashes are found
             if (firstBackslashIndex != -1 && secondBackslashIndex != -1)
             {
-                // Extract the substring between the first and second "\"
+                // Extract the substring between the first and second "/"
                 string uriSubstring = serverAddress.Trim();
                 string uriFinal = uriSubstring.ToString();
                 string firstString = requestUriString.Substring(0, firstBackslashIndex + 1);
@@ -56,7 +56,7 @@ namespace BSN.IpTables.V1
             if (next == null)
                 throw new NullReferenceException("Next is null!");
 
-            Console.WriteLine("##### Module::SendAsync after change: @@@@@" + " " + requestUriString);
+            Console.WriteLine("##### Module::SendAsync after change: @@@@@" + " " + request.RequestUri.ToString());
             return await next.SendAsync(request, callback);
         }
 
