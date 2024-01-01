@@ -111,7 +111,7 @@ jobs:
         sudo dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: Test Results
