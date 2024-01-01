@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "http://resaa.net/",
+      "url": "http://iptable.bsn.local",
       "description": "IpTables Test Server"
     }
   ],
