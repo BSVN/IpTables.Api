@@ -9,7 +9,7 @@
 $ErrorActionPreference = 'Stop'
 
 if ($PSEdition -ne 'Core') {
-  Write-Error 'This script requires PowerShell Core to execute. [Note] Generated cmdlets will work in both PowerShell Core or Windows PowerShell.'
+    Write-Error 'This script requires PowerShell Core to execute. [Note] Generated cmdlets will work in both PowerShell Core or Windows PowerShell.'
 }
 
 try {
@@ -42,6 +42,10 @@ catch {
 
 Write-Host "Generating Cli .." -ForegroundColor Green
 autorest configuration.yaml --verbose
+
+# Copy custom files
+Write-Host "Copy custom files .." -ForegroundColor Green
+cp custom/* generated/custom
 
 # Build Module
 Write-Host "Building generating Cli .." -ForegroundColor Green

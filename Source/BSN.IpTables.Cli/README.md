@@ -50,7 +50,8 @@ All Cli commands are encapsulated in `BsnIPTablesCli` module. To show all comman
 Sample output:
 
     CommandType     Name                                               Version    Source
-    -----------     ----                                               -------    ------
+    -----------     ----    
+    Function        Connect-BsnIPTablesCli                             1.2.0      BsnIPTablesCli
     Function        Add-BsnIPTablesCli                                 1.2.0      BsnIPTablesCli
     Function        Get-BsnIPTablesCli                                 1.2.0      BsnIPTablesCli
     Function        Remove-BsnIPTablesCli                              1.2.0      BsnIPTablesCli
@@ -61,7 +62,7 @@ To see a command input parameters run:
 
 Sample output:
 
-    Add-BsnIPTablesCli -ServerAddress <string> [-Chain <string>] [-RuleDestinationIP <string>] [-RuleDestinationPort <string>] [-RuleInterfaceName <string>] [-RuleJump <string>] [-RuleProtocol <string>] [-RuleSourceIP <string>] [-RuleSourcePort <string>] [-Break] [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <uri>] [-ProxyCredential <pscredential>] [-ProxyUseDefaultCredentials] [-WhatIf] [-Confirm] [<CommonParameters>]
+    Add-BsnIPTablesCli [-Chain <string>] [-RuleDestinationIP <string>] [-RuleDestinationPort <string>] [-RuleInterfaceName <string>] [-RuleJump <string>] [-RuleProtocol <string>] [-RuleSourceIP <string>] [-RuleSourcePort <string>] [-Break] [-HttpPipelineAppend <SendAsyncStep[]>] [-HttpPipelinePrepend <SendAsyncStep[]>] [-Proxy <uri>] [-ProxyCredential <pscredential>] [-ProxyUseDefaultCredentials] [-WhatIf] [-Confirm] [<CommonParameters>]
 
 
 To see full help for a command run:
@@ -70,9 +71,13 @@ To see full help for a command run:
 
 ## Sample Commands
 
-1. List all existing IpTable rules.
+1. Connect to main server.
 
-    Get-BsnIPTablesCli -serverAddress 192.168.21.56:8080
+    Connect-BsnIPTablesCli -serverAddress 192.168.21.56:8080
+
+2. List all existing IpTable rules.
+
+    Get-BsnIPTablesCli 
 
 Sample output:
 
@@ -91,20 +96,20 @@ Sample output:
 
 Which means only one rule exists. The rule casues to drop incoming tcp packets from `1.2.3.4` IPv4 address.
 
-2. Drop all incoming ICMP packets from any source, on all interfaces:
+3. Drop all incoming ICMP packets from any source, on all interfaces:
 
-    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+    Add-BsnIPTablesCli -Chain INPUT -RuleJump DROP -RuleProtocol icmp
 
-3. Remove the previous rule:
+4. Remove the previous rule:
 
-    Remove-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+    Remove-BsnIPTablesCli -Chain INPUT -RuleJump DROP -RuleProtocol icmp
  
 ## Verification
 
 Each CLI command is equivalent to an `iptables` command. Valid execution of CLI commands could be verified by checking existing rules in the destination server.
 Another way to verify a successful operation is to check rule enforcement in a traffic flow. Below are some scenarios to test IpTables by these two methods.
 
-Scenario 1: Add a rule with `iptables`, then list existing rules with CLI and check its existence.
+Scenario 1: Connect to server, then add a rule with `iptables`, then list existing rules with CLI and check its existence.
 
 First flush rules:
 
@@ -116,7 +121,7 @@ Then add a rule to drop tcp packets from specific IP adddress and port:
 
 List rules with CLI:
 
-    Get-BsnIPTablesCli -serverAddress 192.168.21.56:8080
+    Get-BsnIPTablesCli
 
 Check and find added rule in output:
 
@@ -132,11 +137,11 @@ Check and find added rule in output:
           "target": "DROP"
         }
 
-Scenario 2: Add a rule with CLI, then list existing rules with `iptables` and check its existence:
+Scenario 2: Connect to server, then add a rule with CLI, then list existing rules with `iptables` and check its existence:
 
 Add a rule to drop tcp packets to specific IP adddress range on specific interface:
 
-    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain OUTPUT -RuleInterfaceName ens160 -RuleProtocol tcp -RuleDestinationIP 69.171.224.0/19 -RuleJump DROP
+    Add-BsnIPTablesCli -Chain OUTPUT -RuleInterfaceName ens160 -RuleProtocol tcp -RuleDestinationIP 69.171.224.0/19 -RuleJump DROP
 
 List output rules with `iptables`:
 
@@ -148,7 +153,7 @@ Check and find added rule in output:
     num  target     prot opt source               destination
     1    DROP       tcp  --  0.0.0.0/0            69.171.224.0/19
 
-Scenario 3: Add a rule with CLI, then check its effect in traffic:
+Scenario 3: Connect to server, then add a rule with CLI, then check its effect in traffic:
 
 Check ping to the server:
 
@@ -156,7 +161,7 @@ Check ping to the server:
 
 Add a rule to drop incoming icmp packets:
 
-    Add-BsnIPTablesCli -serverAddress 192.168.21.56:8080 -Chain INPUT -RuleJump DROP -RuleProtocol icmp
+    Add-BsnIPTablesCli -Chain INPUT -RuleJump DROP -RuleProtocol icmp
 
 Check ping to the server, it should not be available:
 
