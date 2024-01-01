@@ -17,7 +17,6 @@ readonly os_name=$(cat /etc/os-release | awk -F '=' '/^NAME/{print $2}' | awk '{
 if ! command -v dotnet &> /dev/null ; then
 
 	# https://askubuntu.com/a/1214268/101335
-	readonly os_name=$(cat /etc/os-release | awk -F '=' '/^NAME/{print $2}' | awk '{print $1}' | tr -d '"')
 	if [ "$os_name" == "Ubuntu" ]
 	then
 		echo "system is Ubuntu"
