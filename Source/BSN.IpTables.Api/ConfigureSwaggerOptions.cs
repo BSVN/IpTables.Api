@@ -18,7 +18,7 @@ namespace BSN.IpTables.Api
             _provider = provider;
         }
 
-        /// <summary>+
+        /// <summary>
         /// Configure each API discovered for Swagger Documentation
         /// </summary>
         /// <param name="options"></param>
