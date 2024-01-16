@@ -24,7 +24,9 @@ This module was primarily generated via [AutoRest](https://github.com/Azure/auto
 
 ## Module Requirements
 
-- None
+- NVM (nvm install 8.0) - You need to install Node.js v10.13.0 or greater.
+- auturest in linux - npm install -g autorest
+- dotnet sdk if not exists - sudo snap install dotnet-sdk
 
 ---
 
@@ -69,7 +71,9 @@ To see full help for a command run:
 
     Get-Help Add-BsnIPTablesCli -Full
 
-## Sample Commands
+## Sample Commands in Windows
+First run .\Generate-PowerShellClient.ps1 in cli directory
+Then .\generated\run-module.ps1
 
 1. Connect to main server.
 
@@ -166,3 +170,10 @@ Add a rule to drop incoming icmp packets:
 Check ping to the server, it should not be available:
 
     ping 192.168.21.56
+
+## Sample Commands in Linux
+First - autorest ./configuration.yaml in cli directory 
+Then - pwsh Generate-PowerShellClient.ps1
+Finally - pwsh ./generated\run-module.ps1
+
+Next steps are the same as windows
