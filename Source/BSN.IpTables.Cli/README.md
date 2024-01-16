@@ -73,6 +73,7 @@ To see full help for a command run:
 
 ## Sample Commands in Windows
 First run .\Generate-PowerShellClient.ps1 in cli directory
+
 Then .\generated\run-module.ps1
 
 1. Connect to main server.
