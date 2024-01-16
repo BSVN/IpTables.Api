@@ -174,7 +174,9 @@ Check ping to the server, it should not be available:
 
 ## Sample Commands in Linux
 First - autorest ./configuration.yaml in cli directory 
+
 Then - pwsh Generate-PowerShellClient.ps1
+
 Finally - pwsh ./generated\run-module.ps1
 
 Next steps are the same as windows
