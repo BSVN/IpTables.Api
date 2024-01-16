@@ -25,7 +25,7 @@ This module was primarily generated via [AutoRest](https://github.com/Azure/auto
 ## Module Requirements
 
 - NVM (nvm install 8.0) - You need to install Node.js v10.13.0 or greater.
-- auturest in linux - npm install -g autorest
+- autorest in linux - npm install -g autorest
 - dotnet sdk if not exists - sudo snap install dotnet-sdk
 
 ---
