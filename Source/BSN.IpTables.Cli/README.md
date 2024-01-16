@@ -25,7 +25,7 @@ This module was primarily generated via [AutoRest](https://github.com/Azure/auto
 ## Module Requirements
 
 - NVM (nvm install 8.0) - You need to install Node.js v10.13.0 or greater.
-- auturest in linux - npm install -g autorest
+- autorest in linux - npm install -g autorest
 - dotnet sdk if not exists - sudo snap install dotnet-sdk
 
 ---
@@ -73,6 +73,7 @@ To see full help for a command run:
 
 ## Sample Commands in Windows
 First run .\Generate-PowerShellClient.ps1 in cli directory
+
 Then .\generated\run-module.ps1
 
 1. Connect to main server.
@@ -173,7 +174,9 @@ Check ping to the server, it should not be available:
 
 ## Sample Commands in Linux
 First - autorest ./configuration.yaml in cli directory 
+
 Then - pwsh Generate-PowerShellClient.ps1
+
 Finally - pwsh ./generated\run-module.ps1
 
 Next steps are the same as windows
