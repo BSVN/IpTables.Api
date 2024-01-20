@@ -38,7 +38,7 @@ namespace BSN.IpTables.V1
             string serverAddress = Environment.GetEnvironmentVariable("ServerAddress").ToString();
             if (serverAddress == null)
             {
-                Console.WriteLine("ServerAddress variable is not set.");
+                throw new ArgumentNullException(nameof(serverAddress), "ServerAddress variable is not set.");
             }
             string requestUriString = request.RequestUri.ToString();
             Uri newUri = new Uri(requestUriString);

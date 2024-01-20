@@ -35,12 +35,20 @@ function Connect-BsnIPTablesCli {
             Write-Error "ServerAddress is mandatory. Please provide a valid value."
             return
         }
-        # Save the ServerAddress in a session variable
-        $env:ServerAddress = $ServerAddress
+    # Check if the ServerAddress environment variable exists
+    $previousValue = $env:ServerAddress
+    $envExists = [System.Environment]::GetEnvironmentVariable('ServerAddress', [System.EnvironmentVariableTarget]::Process) -ne $null
+
+    if ($envExists) {
+        Write-Output "Last ServerAddress was: $previousValue and now is changed to: $ServerAddress"
+    }
+    else
+    {
+                Write-Output "Connected to: $ServerAddress"
     }
 
-    process {
-        Write-Output "Connected to: $ServerAddress"
+    # Save the ServerAddress in a session variable
+    $env:ServerAddress = $ServerAddress
     }
 
     end {
