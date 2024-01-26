@@ -12,25 +12,25 @@ if ($PSEdition -ne 'Core') {
     Write-Error 'This script requires PowerShell Core to execute. [Note] Generated cmdlets will work in both PowerShell Core or Windows PowerShell.'
 }
 
- try {
-     Write-Host "Nvm is installed, version" $(nvm --version)
- }
- catch {
-     Write-Error "Nvm is not installed, install it manually to continue."
- }
+try {
+    Write-Host "Nvm is installed, version" $(nvm --version)
+}
+catch {
+    Write-Error "Nvm is not installed, install it manually to continue."
+}
 
-# # 18.18.0 is the latest LTS node version
-# New-Variable -Name desiredNodeVersion -Value 'v18.18.0' -Option ReadOnly
- if ($(nvm current) -ne $desiredNodeVersion) {
-     nvm install $desiredNodeVersion
-     nvm use $desiredNodeVersion
- }
- else {
-     Write-Host "Node is installed, version" $desiredNodeVersion
- }
+# 18.18.0 is the latest LTS node version
+New-Variable -Name desiredNodeVersion -Value 'v18.18.0' -Option ReadOnly
+if ($(nvm current) -ne $desiredNodeVersion) {
+    nvm install $desiredNodeVersion
+    nvm use $desiredNodeVersion
+}
+else {
+    Write-Host "Node is installed, version" $desiredNodeVersion
+}
 
 try {
-    (autorest --version).Split([Environment]::NewLine) | Select -First 1
+    (autorest --version).Split([Environment]::NewLine) | Select-Object -First 1
 }
 catch {
     Write-Host "autorest is not installed, installing .." -ForegroundColor Yellow
@@ -45,7 +45,7 @@ autorest configuration.yaml --verbose
 
 # Copy custom files
 Write-Host "Copy custom files .." -ForegroundColor Green
-cp custom/* generated/custom
+Copy-Item "custom\*" -Destination "generated\custom"
 
 # Build Module
 Write-Host "Building generating Cli .." -ForegroundColor Green

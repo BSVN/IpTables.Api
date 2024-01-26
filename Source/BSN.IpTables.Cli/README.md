@@ -24,9 +24,9 @@ This module was primarily generated via [AutoRest](https://github.com/Azure/auto
 
 ## Module Requirements
 
-- NVM (nvm install 8.0) - You need to install Node.js v10.13.0 or greater.
-- autorest in linux - npm install -g autorest
-- dotnet sdk if not exists - sudo snap install dotnet-sdk
+- Node.js v18.18.0. It could be installed by NVM
+- Autorest node package
+- dotnet sdk if not exists (in linux run: sudo snap install dotnet-sdk)
 
 ---
 
@@ -71,12 +71,12 @@ To see full help for a command run:
 
     Get-Help Add-BsnIPTablesCli -Full
 
-## Sample Commands in Windows
+## Sample Commands
 First run .\Generate-PowerShellClient.ps1 in cli directory
 
 Then .\generated\run-module.ps1
 
-1. Connect to main server.
+1. Connect to the main server.
 
     Connect-BsnIPTablesCli -serverAddress 192.168.21.56:8080
 
@@ -172,11 +172,17 @@ Check ping to the server, it should not be available:
 
     ping 192.168.21.56
 
-## Sample Commands in Linux
-First - autorest ./configuration.yaml in cli directory 
+## Running in Linux
+First install dotnet sdk and powershell:
 
-Then - pwsh Generate-PowerShellClient.ps1
+    sudo snap install dotnet-sdk pwsh
 
-Finally - pwsh ./generated\run-module.ps1
+Then:
 
-Next steps are the same as windows
+    pwsh Generate-PowerShellClient.ps1
+
+Finally:
+
+    pwsh ./generated/run-module.ps1
+
+Next steps are the same as windows.
