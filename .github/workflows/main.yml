@@ -25,7 +25,7 @@ jobs:
     name: build-and-test-${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-20.04]
         include:
           - solution: BSN.IpTables.Api.sln
 
@@ -120,14 +120,6 @@ jobs:
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
 
-      # add report as PR comment (if PR)
-    - name: comment PR
-      uses: machine-learning-apps/pr-comment@master
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        path: ${{env.file_name}}
     - name: Dump steps context
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
