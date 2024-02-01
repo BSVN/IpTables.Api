@@ -71,7 +71,7 @@ jobs:
 
     - name: Build
       id: build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ${{ matrix.solution }} --configuration Release --no-restore
 
     - name: Git Version
       id: gitversion
