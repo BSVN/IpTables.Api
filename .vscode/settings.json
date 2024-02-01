@@ -1,3 +1,20 @@
 {
-    "dotnet.defaultSolution": "BSN.IpTables.Api.sln"
+    "dotnet.defaultSolution": "BSN.IpTables.Api.sln",
+    "cSpell.words": [
+        "apinfo",
+        "autoexpire",
+        "htable",
+        "ipban",
+        "kamailio",
+        "Kamailio",
+        "loadmodule",
+        "modparam",
+        "mytable",
+        "Postrouting",
+        "Prerouting",
+        "shtrecord",
+        "xlog",
+        "iptables",
+        "IpTables"
+    ]
 }
