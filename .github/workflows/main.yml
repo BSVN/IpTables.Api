@@ -25,7 +25,7 @@ jobs:
     name: build-and-test-${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-20.04]
         include:
           - solution: BSN.IpTables.Api.sln
 
@@ -58,7 +58,7 @@ jobs:
           ${{ runner.os }}-nuget
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ matrix.solution }}
 
     - name: Build with Cake
       uses: cake-build/cake-action@v1
@@ -71,7 +71,7 @@ jobs:
 
     - name: Build
       id: build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ${{ matrix.solution }} --configuration Release --no-restore
 
     - name: Git Version
       id: gitversion
@@ -107,8 +107,8 @@ jobs:
 
     - name: Test
       run: |
-        sudo dotnet test --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
-        sudo dotnet test --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+        sudo dotnet test ${{ matrix.solution }} --no-restore --verbosity normal --logger trx --results-directory Build/artifacts
+        sudo dotnet test ${{ matrix.solution }} --no-restore --no-build --configuration Release --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
@@ -120,14 +120,6 @@ jobs:
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
 
-      # add report as PR comment (if PR)
-    - name: comment PR
-      uses: machine-learning-apps/pr-comment@master
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        path: ${{env.file_name}}
     - name: Dump steps context
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
