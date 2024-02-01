@@ -1,3 +1,7 @@
 {
-    "dotnet.defaultSolution": "BSN.IpTables.Api.sln"
+    "dotnet.defaultSolution": "BSN.IpTables.Api.sln",
+    "cSpell.words": [
+        "iptables",
+        "IpTables"
+    ]
 }
