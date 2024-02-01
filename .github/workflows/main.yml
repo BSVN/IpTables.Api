@@ -25,7 +25,7 @@ jobs:
     name: build-and-test-${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         include:
           - solution: BSN.IpTables.Api.sln
 
