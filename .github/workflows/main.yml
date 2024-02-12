@@ -61,7 +61,7 @@ jobs:
       run: dotnet restore ${{ matrix.solution }}
 
     - name: Build with Cake
-      uses: cake-build/cake-action@v1
+      uses: cake-build/cake-action@v2
       with:
         target: JustBuild
         script-path: Build/linux-build.cake
@@ -97,7 +97,7 @@ jobs:
 
     # run tests with built project
     - name: Test with Cake
-      uses: cake-build/cake-action@v1
+      uses: cake-build/cake-action@v2
       with:
         target: JustTest
         script-path: Build/linux-build.cake
