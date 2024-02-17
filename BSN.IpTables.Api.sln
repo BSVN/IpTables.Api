@@ -94,6 +94,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BSN.IpTables.Cli", "BSN.IpT
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B20411E0-4592-467B-A6E0-11D7B72394BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "custom", "custom", "{339949B1-92F8-47FA-8A81-540B02A977D2}"
+	ProjectSection(SolutionItems) = preProject
+		Source\BSN.IpTables.Cli\custom\Connect-BsnIPTablesCli.ps1 = Source\BSN.IpTables.Cli\custom\Connect-BsnIPTablesCli.ps1
+		Source\BSN.IpTables.Cli\custom\Module.cs = Source\BSN.IpTables.Cli\custom\Module.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +155,7 @@ Global
 		{71CC466A-3B2D-4BAD-A477-6FFCAD7B9A11} = {12DEA530-7ABA-4B24-B629-E231AA36C365}
 		{B71BFC87-862F-4B84-911F-D9DAE5BD6CA9} = {71CC466A-3B2D-4BAD-A477-6FFCAD7B9A11}
 		{C61D2326-DF76-4213-9B69-D70FED715099} = {70AE69C7-7213-4193-A514-5D06526EC544}
+		{339949B1-92F8-47FA-8A81-540B02A977D2} = {C61D2326-DF76-4213-9B69-D70FED715099}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52753D02-BF5A-4DDE-BB5E-4FA5E12E0C8F}

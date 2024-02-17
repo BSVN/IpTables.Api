@@ -52,10 +52,19 @@ namespace BSN.IpTables.V1
                     "ServerAddress variable is not set."
                 );
             }
+            string[] serverAddressArray = serverAddress.Split(new char[] { ':' }, options: StringSplitOptions.RemoveEmptyEntries);
+            if (serverAddressArray.Length != 2)
+            {
+                throw new ArgumentException(
+                    nameof(serverAddress),
+                    "ServerAddress is invalid."
+                );
+            }
             string requestUriString = request.RequestUri.ToString();
             Uri newUri = new Uri(requestUriString);
             string host = newUri.Host;
-            string finalUrl = requestUriString.Replace(host, serverAddress);
+            string port = newUri.Port.ToString();
+            string finalUrl = requestUriString.Replace(host, serverAddressArray[0]).Replace(port, serverAddressArray[1]);
             request.RequestUri = new Uri(finalUrl);
             if (next == null)
                 throw new NullReferenceException("Next is null!");
