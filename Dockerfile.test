@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:8.0.101
 RUN mkdir /usr/local/temp
 
 RUN wget https://aka.ms/getvsdbgsh && \
