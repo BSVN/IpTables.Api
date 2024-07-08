@@ -19,7 +19,7 @@
     <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="BSN.Commons.PresentationInfrastructure" Version="1.15.0" />
+    <PackageReference Include="BSN.Commons.PresentationInfrastructure" Version="1.16.0" />
     <PackageReference Include="IPTables.Net" Version="0.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
